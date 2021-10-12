@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
+
 @Component({
-  selector: 'app-integrations',
-  templateUrl: './integrations.component.html',
-  styleUrls: ['./integrations.component.css'],
+  selector: 'app-config-modal',
+  templateUrl: './config-modal.component.html',
+  styleUrls: ['./config-modal.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class IntegrationsComponent implements OnInit {
+export class ConfigModalComponent implements OnInit {
 
   constructor() { }
 

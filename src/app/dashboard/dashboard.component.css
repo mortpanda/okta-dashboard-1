@@ -1,0 +1,35 @@
+
+.mat-tab-group{
+    background-color: white;
+    z-index: 1!important;
+    width: 100%;
+    min-height: 500px;
+    margin: 45px;
+    border-radius: 5px;
+}
+
+.mat-tab-header {
+    background-color: #00297A!important;
+    padding: 0px;
+    color: white!important;
+    min-width: 50px !important;
+    
+}
+
+.mat-tab-label {
+    min-width: 100px!important;
+    padding: 15px;
+    background-color: #00297A!important;
+    color: white!important;
+    opacity: 1!important;
+    
+}
+
+.mat-tab-label.mat-tab-label-active {
+    min-width: 100px!important;
+    padding: 15px;
+    background-color: white!important;
+    color: #00297A!important;
+    
+}
+

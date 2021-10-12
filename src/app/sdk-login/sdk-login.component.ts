@@ -23,6 +23,7 @@ export class SdkLoginComponent implements OnInit {
   constructor(private fb: FormBuilder, private authService: AuthService,private OktaConfig: OktaConfig) {}
 
   async ngOnInit() {
+    document.getElementById("config").style.visibility = "hidden";
     this.strLanguage = '日本語';
     this.loginform = this.fb.group({
       username: ["", Validators.email],

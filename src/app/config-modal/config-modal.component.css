@@ -1,0 +1,18 @@
+.mat-dialog-container {
+    color: #00297A!important;
+    background: #D7D7DC!important;
+}
+
+.OrgConfigForm {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.OrgSetting {
+    width: 100%;
+}
+
+.banner {
+    justify-content: center;
+}

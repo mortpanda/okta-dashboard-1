@@ -2,19 +2,18 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 //// This is needed to import from a path
-
-
 import { ViewEncapsulation } from '@angular/core';
-
 import { ViewChild, AfterViewInit } from '@angular/core';
-import {OktaSDKAuthService} from 'app/shared/okta/okta-auth-service';
+import { OktaSDKAuthService } from 'app/shared/okta/okta-auth-service';
 import { Router } from '@angular/router';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { ConfigModalComponent } from 'app/config-modal/config-modal.component';
+
 
 interface Food {
     value: string;
     viewValue: string;
-  }
+}
 
 
 declare const OktaMFA: any;
@@ -33,22 +32,33 @@ export class NavbarComponent implements OnInit {
     private sidebarVisible: boolean;
     public Userfullname: any;
 
-    foods: Food[] = [
-        {value: 'steak-0', viewValue: 'Steak'},
-        {value: 'pizza-1', viewValue: 'Pizza'},
-        {value: 'tacos-2', viewValue: 'Tacos'}
-      ];
-    
-    
-    constructor(public location: Location, private element : ElementRef,public _matdialog: MatDialog, private OktaAuthClient : OktaSDKAuthService,private router: Router) {
+
+
+
+    constructor(public location: Location, private element: ElementRef, public _matdialog: MatDialog, private OktaAuthClient: OktaSDKAuthService, private router: Router) {
         this.sidebarVisible = false;
+    }
+
+    openConfigModal() {
+        const dialogConfig = new MatDialogConfig();
+
+        this.sidebarClose();
+
+        // 表示するdialogの設定
+        //dialogConfig.disableClose = true;
+        dialogConfig.id = "login-component";
+        dialogConfig.height = "300px";
+        dialogConfig.width = "500px";
+
+
+        const modalDialog = this._matdialog.open(ConfigModalComponent, dialogConfig);
     }
 
     ngOnInit() {
         const navbar: HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
-        
-                
+
+
 
     }
     sidebarOpen() {
@@ -57,7 +67,7 @@ export class NavbarComponent implements OnInit {
         // console.log(html);
         // console.log(toggleButton, 'toggle');
 
-        setTimeout(function(){
+        setTimeout(function () {
             toggleButton.classList.add('toggled');
         }, 500);
         html.classList.add('nav-open');
@@ -81,11 +91,11 @@ export class NavbarComponent implements OnInit {
         }
     };
     isHome() {
-      var titlee = this.location.prepareExternalUrl(this.location.path());
-      if(titlee.charAt(0) === '#'){
-          titlee = titlee.slice( 1 );
-      }
-        if( titlee === '/home' ) {
+        var titlee = this.location.prepareExternalUrl(this.location.path());
+        if (titlee.charAt(0) === '#') {
+            titlee = titlee.slice(1);
+        }
+        if (titlee === '/home') {
             return true;
         }
         else {
@@ -93,7 +103,7 @@ export class NavbarComponent implements OnInit {
         }
     }
 
-    ProfilePage(){
+    ProfilePage() {
         // this.router.navigate(['https://kent-nagao-test.oktapreview.com/home/kent-nagao-test_angulartest_3/0oa1bn5842y4SaRrA1d7/aln1bn8srsqNf0zLq1d7']);
         OktaMFA();
 
@@ -101,11 +111,11 @@ export class NavbarComponent implements OnInit {
     }
 
     isDocumentation() {
-      var titlee = this.location.prepareExternalUrl(this.location.path());
-      if(titlee.charAt(0) === '#'){
-          titlee = titlee.slice( 1 );
-      }
-        if( titlee === '/documentation' ) {
+        var titlee = this.location.prepareExternalUrl(this.location.path());
+        if (titlee.charAt(0) === '#') {
+            titlee = titlee.slice(1);
+        }
+        if (titlee === '/documentation') {
             return true;
         }
         else {
@@ -113,10 +123,10 @@ export class NavbarComponent implements OnInit {
         }
     }
 
-    OktaLogout(){
+    OktaLogout() {
         this.OktaAuthClient.OktaSDKAuthClient.signOut();
         // document.getElementById("welcomeText").innerHTML = " "
-        }
+    }
 }
 
 
