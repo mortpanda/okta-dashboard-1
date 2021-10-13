@@ -1,6 +1,8 @@
 .mat-dialog-container {
     color: #00297A!important;
     background: #D7D7DC!important;
+    font-size: 14px!important;
+    text-align: center;
 }
 
 .OrgConfigForm {
@@ -15,4 +17,17 @@
 
 .banner {
     justify-content: center;
+}
+
+.btn{
+    margin: 10px!important;
+
+}
+
+.form-group {
+    margin-bottom: 5px!important;
+}
+
+.banner{
+    width: 10px!important;
 }

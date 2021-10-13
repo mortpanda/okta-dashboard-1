@@ -47,8 +47,8 @@ export class NavbarComponent implements OnInit {
         // 表示するdialogの設定
         //dialogConfig.disableClose = true;
         dialogConfig.id = "login-component";
-        dialogConfig.height = "300px";
-        dialogConfig.width = "500px";
+        dialogConfig.height = "350px";
+        dialogConfig.width = "360px";
 
 
         const modalDialog = this._matdialog.open(ConfigModalComponent, dialogConfig);

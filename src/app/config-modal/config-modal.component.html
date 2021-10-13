@@ -1,18 +1,46 @@
+<a class="banner"><img src="assets/img/okta-japan.png" width="300px" alt=""></a>
+<!-- <div class="portal_title"><h1>THE PORTAL</h1></div> -->
+<div class="login-form">
+    
+    <form [formGroup]="loginform" (ngSubmit)="setCookie()" id="loginpage">        
+        <div class="form-group">
+            <mat-form-field appearance="legacy" [style.width.px]=300>
+                <mat-label>Org URL</mat-label>
+                <input matInput placeholder="https://atko.okta.com" cdkFocusInitial input  class="form-control"
+                    id="orgurl" autocomplete="orgurl" formControlName="orgurl" required appAutoFocusDirective>
+                <!-- <mat-icon matSuffix>adb</mat-icon> -->
+            </mat-form-field>
+            <mat-form-field appearance="legacy" [style.width.px]=300>
+                <mat-label>API Key</mat-label>
+                <input matInput placeholder="00cg1PLfOwBVxJEtFMHb0BIIHA8y1Wo4pLoID9DfeE" input  class="form-control"
+                    id="orgAPIKey" autocomplete="orgAPIKey" formControlName="orgAPIKey" required>
+                <!-- <mat-icon matSuffix>lock</mat-icon> -->
+            </mat-form-field>
+        </div>
+        <button id="modal-login-button" type="submit" class="btn btn-primary mt-4 mb-3">Save</button>
+    </form>
+</div>
 
-<h1><a class="banner"><img src="assets/img/okta-japan.png" width="450px" alt=""></a></h1>
 
 
 
 
-<form class="OrgConfigForm">
+
+<!-- <h1><a class="banner"><img src="assets/img/okta-japan.png" width="450px" alt=""></a></h1>
+<form class="OrgConfigForm"  [formGroup]="OrgInfo">
     <mat-form-field class="OrgSetting" appearance="fill">
         <mat-label>Org URL</mat-label>
-        <input matInput placeholder="https://atko.okta.com" value="">
+        <input matInput placeholder="https://atko.okta.com" value="" id="orgURL" formControlName="orgURL" required>
     </mat-form-field>
     <br>
     <mat-form-field class="OrgSetting" appearance="fill">
         <mat-label>API Key</mat-label>
-        <input matInput placeholder="00cg1PLfOwBVxJEtFMHb0BIIHA8y1Wo4pLoID9DfeE" value="">
+        <input matInput placeholder="00cg1PLfOwBVxJEtFMHb0BIIHA8y1Wo4pLoID9DfeE" value="" id="orgAPIKey" formControlName="orgAPIKey" required>
     </mat-form-field>
-
 </form>
+<div>
+    <a class="btn btn-danger btn-round lang" id="config" (click)="setCookie()">Save</a>
+    <br>
+    <br>
+    <p>Clicking on "Save" will save the above information to your cookies.  </p>
+</div> -->

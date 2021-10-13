@@ -58,6 +58,8 @@ import { UsersGroupsComponent } from './users-groups/users-groups.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ConfigModalComponent } from './config-modal/config-modal.component'; 
+import {CookieService} from 'ngx-cookie-service';
+
 
 @NgModule({
   declarations: [
@@ -118,7 +120,7 @@ import { ConfigModalComponent } from './config-modal/config-modal.component';
     MatSelectModule
 
   ],
-  providers: [OktaSDKAuthService], 
+  providers: [OktaSDKAuthService,CookieService], 
   bootstrap: [AppComponent]
 })
 export class AppModule { }
