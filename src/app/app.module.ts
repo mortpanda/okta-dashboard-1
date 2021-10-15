@@ -87,7 +87,7 @@ import {CookieService} from 'ngx-cookie-service';
     NgbModule,
     FormsModule,
     RouterModule,
-
+    HttpClientModule,
     //ExamplesModule,
     AppRoutingModule,
     BrowserAnimationsModule,
