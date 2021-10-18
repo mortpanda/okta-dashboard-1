@@ -1,0 +1,20 @@
+.welcome{
+    color: white!important;
+    margin-top: 90px!important;
+    padding-top: 90px!important;
+}
+.user{
+    color: white!important;
+    position: absolute; 
+    z-index: 3!important;
+}
+
+.tabs{
+    /* align-content: center!important;
+    position: absolute!important;*/
+    display: inline-flex!important; 
+    z-index: 2!important;
+    
+}
+
+

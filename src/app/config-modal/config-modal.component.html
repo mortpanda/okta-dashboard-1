@@ -4,13 +4,15 @@
 
     <mat-form-field appearance="legacy" [style.width.px]=350>
         <mat-label>Org URL</mat-label>
-        <input matInput placeholder="e.g. https://acme.okta.com" cdkFocusInitial  input id="orgURL" name="orgURL" type="text" >
+        <input matInput placeholder="e.g. https://acme.okta.com" cdkFocusInitial input id="orgURL" name="orgURL"
+            type="text">
 
     </mat-form-field>
 
     <mat-form-field appearance="legacy" [style.width.px]=350>
         <mat-label>API Key</mat-label>
-        <input matInput placeholder="e.g. 00cg1PLfOwBVxJEtFMHb0BIIHA8y1Wo4pLoID9DfeE"  input id="orgAPI" name="orgAPI" type="text">
+        <input matInput placeholder="e.g. 00cg1PLfOwBVxJEtFMHb0BIIHA8y1Wo4pLoID9DfeE" input id="orgAPI" name="orgAPI"
+            type="text">
     </mat-form-field>
     <br>
     <button id="modal-login-button" class="btn btn-primary mt-4 mb-3 config" (click)="setCookie()">Save</button>
@@ -18,6 +20,7 @@
     <button id="modal-login-button" class="btn btn-primary mt-4 mb-3" (click)="authenticateOkta()">Authenticate</button>
 
     <br>
-    This will save the Org URL, and API key in your cookies.
-
-    <h1>{{strConfirmed}}</h1>
+    <a class="SaveLocation">This will save the Org URL, and API key in your cookies.</a>
+    <br><br>
+    <p class="CheckStatus">{{strSucess}}</p><br>
+    <h3>{{strConfirmed}}</h3>

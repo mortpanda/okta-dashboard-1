@@ -59,6 +59,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ConfigModalComponent } from './config-modal/config-modal.component'; 
 import {CookieService} from 'ngx-cookie-service';
+import { ApiCheckComponent } from './api-check/api-check.component';
+import { DashboardDisplayPageComponent } from './dashboard-display-page/dashboard-display-page.component';
 
 
 @NgModule({
@@ -80,6 +82,8 @@ import {CookieService} from 'ngx-cookie-service';
     UsersGroupsComponent,
     DashboardComponent,
     ConfigModalComponent,
+    ApiCheckComponent,
+    DashboardDisplayPageComponent,
     
   ],
   imports: [

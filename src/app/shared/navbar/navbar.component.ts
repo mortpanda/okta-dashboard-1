@@ -47,7 +47,7 @@ export class NavbarComponent implements OnInit {
         // 表示するdialogの設定
         //dialogConfig.disableClose = true;
         dialogConfig.id = "login-component";
-        dialogConfig.height = "420px";
+        dialogConfig.height = "500px";
         dialogConfig.width = "500px";
 
 

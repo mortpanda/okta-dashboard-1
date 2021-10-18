@@ -1,3 +1,14 @@
+/* .mat-tab-group .tabGroup .mat-primary{
+align-content: center!important;
+} */
+
+.tabGroup{
+    position: relative!important;
+    z-index: 1!important;
+ 
+} 
+
+
 .config{
     background-color: #8D6E97!important;
     border-color:  #8D6E97!important;
@@ -25,7 +36,7 @@
     
 }
 
-.mat-tab-group{
+.mat-tab-group, .mat-primary{
     background-color: white;
     z-index: 1!important;
     width: 100%;

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-
-import { HttpClientModule } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { OktaConfig } from "app/shared/okta/okta-config";
-
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { ApiCheckComponent } from 'app/api-check/api-check.component';
 
 @Component({
   selector: 'app-config-modal',
@@ -20,14 +20,23 @@ export class ConfigModalComponent implements OnInit {
 
   private RetOrgURL;
   private RetAPIKey;
-  
-public strConfirmed;
 
-  constructor(private cookieService: CookieService, private http: HttpClientModule, private OktaConfig: OktaConfig) { }
+  public strConfirmed;
+  public strUserID;
+  public strSucess;
+
+  constructor(private cookieService: CookieService, private http: HttpClient, private _snackBar: MatSnackBar) { }
+  durationInSeconds = 4;
+  openSnackBar() {
+    this._snackBar.openFromComponent(ApiCheckComponent, {
+      duration: this.durationInSeconds * 1000,
+    });
+  }
+
 
   async ngOnInit() {
 
-    
+
     this.strSessionMe = '/api/v1/users/me';
     this.strOktaURI = '';
     this.strSSWSKey = '';
@@ -35,8 +44,8 @@ public strConfirmed;
     this.strOktaURI = this.cookieService.get('orgURL');
     this.strSSWSKey = this.cookieService.get('orgAPI');
 
-    console.log('You org URL is : ' + this.strOktaURI);
-    console.log('You API key is : ' + this.strSSWSKey);
+    // console.log('You org URL is : ' + this.strOktaURI);
+    // console.log('You API key is : ' + this.strSSWSKey);
 
     (<HTMLInputElement>document.getElementById("orgURL")).value = this.strOktaURI;
     (<HTMLInputElement>document.getElementById("orgAPI")).value = this.strSSWSKey;
@@ -66,43 +75,35 @@ public strConfirmed;
 
   async authenticateOkta() {
     this.strConfirmed = "";
-    // this.strOktaURI = '';
-    // this.strSSWSKey = '';
-
-    // this.RetOrgURL = "";
-    // this.RetAPIKey = "";
-
-    // this.strOktaURI = this.cookieService.get('orgURL');
-    // this.strSSWSKey = this.cookieService.get('orgAPI');
-
-
-    // (<HTMLInputElement>document.getElementById("orgURL")).value = this.strOktaURI;
-    // (<HTMLInputElement>document.getElementById("orgAPI")).value = this.strSSWSKey;
-
-
     this.RetOrgURL = (<HTMLInputElement>document.getElementById("orgURL")).value;
     this.RetAPIKey = (<HTMLInputElement>document.getElementById("orgAPI")).value;
-    
-    console.log(this.RetOrgURL);
 
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', this.RetOrgURL + this.strSessionMe);
-    xhr.onload = () => {
-      console.log('Response is ' + xhr.status);
-      this.strConfirmed = "API Key has been verified against the org";
-    };
-    xhr.onerror = () => {
-      console.log("error!");
-      this.strConfirmed = "Failed!  Please enter the correct information";
-    };
-    xhr.setRequestHeader("Accept", "application/json");
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.setRequestHeader("Authorization", "SSWS " + this.RetAPIKey);
-    xhr.send();
-    
-    
+    console.log("Your URL is : " + this.RetOrgURL);
+    console.log("Your API Key is : " + this.RetAPIKey);
 
-    
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Accept", "application/json");
+    myHeaders.append("Authorization", "SSWS " + this.RetAPIKey);
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+    };
+
+    fetch(this.RetOrgURL + this.strSessionMe, requestOptions)
+      //Success
+      .then(response => response.json())
+      //Error 
+      .catch(error => {
+        console.log('error', error)
+        this.openSnackBar();
+      }
+      );
+    this.strUserID = await fetch(this.RetOrgURL + this.strSessionMe, requestOptions).then(response => response.json())
+    console.log(this.strUserID);
+    console.log(this.strUserID.profile.email);
+    this.strConfirmed = this.strUserID.profile.email;
+
   }
 
   setCookie() {
@@ -135,3 +136,20 @@ public strConfirmed;
 }
 
 
+
+
+
+    // const xhr = new XMLHttpRequest();
+    // xhr.open('GET', this.RetOrgURL + this.strSessionMe);
+    // xhr.onload = () => {
+    //   console.log('Response is ' + xhr.status);
+    //   this.strConfirmed = "API Key has been verified against the org";
+    // };
+    // xhr.onerror = () => {
+    //   console.log("error!");
+    //   this.strConfirmed = "Failed!  Please enter the correct information";
+    // };
+    // xhr.setRequestHeader("Accept", "application/json");
+    // xhr.setRequestHeader("Content-Type", "application/json");
+    // xhr.setRequestHeader("Authorization", "SSWS " + this.RetAPIKey);
+    // xhr.send();

@@ -1,3 +1,11 @@
+.CheckStatus{
+    color:#00B478;
+
+}
+.SaveLocation{
+    color: #00297A!important;
+}
+
 .mat-dialog-container {
     color: #00297A!important;
     background: #D7D7DC!important;
