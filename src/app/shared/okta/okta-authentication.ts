@@ -11,8 +11,6 @@ import { OktaConfig } from "app/shared/okta/okta-config";
   providedIn: "root"
 })
 
-
-
 export class AuthService {
 
 

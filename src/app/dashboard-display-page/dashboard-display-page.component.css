@@ -1,19 +1,23 @@
-.welcome{
-    color: white!important;
-    margin-top: 90px!important;
-    padding-top: 90px!important;
-}
+
 .user{
     color: white!important;
-    position: absolute; 
+    position: relative;
     z-index: 3!important;
+    /* margin-top: 190px!important; */
+    /* display: block!important; */
+    
+    /* margin-top: 60px!important;
+    padding-top: 60px!important; */
+    padding-left: 30px!important;
+    margin-top: 30px!important; 
 }
 
 .tabs{
-    /* align-content: center!important;
-    position: absolute!important;*/
-    display: inline-flex!important; 
+    /* align-content: center!important; */
+    /* position: absolute!important; */
+    display: inline-flex!important;
     z-index: 2!important;
+    margin-bottom: 80px!important;
     
 }
 

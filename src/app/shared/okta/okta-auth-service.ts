@@ -17,7 +17,7 @@ export class OktaSDKAuthService {
         responseType: this.OktaConfig.strResponseType,
         scopes: this.OktaConfig.strScope,
         prompt: this.OktaConfig.strPrompt,
-
+        
     };
 
     OktaSDKAuthClient = new OktaAuth(this.config);    

@@ -7,14 +7,15 @@
         
 
         <mat-tab-group class="tabGroup">
-            <mat-tab label="Users"> Content 1
+            <mat-tab label="Users"> <a class="btn btn-danger btn-round config UserInfo_btn" id="UserInfo_btn" (click)="GetUsers()">Get User Info</a>
 
                 <div class="fxcontainer" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px">
 
                     <div class="item item1" id="memberProfile">
                         <a mat-button href="https://mortpanda.github.io/ciam-angular-portal-profile/home"
                             target="_blank" class="btn_profile">
-                            Oktaプロファイル<br>参照サイト
+                            User Informatkion<br>
+                                {{strTestStuff}}
                         </a>
 
                     </div>
@@ -44,6 +45,7 @@
 
 
                 </div>
+                
             </mat-tab>
             <mat-tab label="Groups"> Content 2 </mat-tab>
 
@@ -52,7 +54,7 @@
             
 
         </mat-tab-group>
-
+        
 <!-- 
 
 

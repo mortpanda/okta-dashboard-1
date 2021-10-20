@@ -23,8 +23,8 @@ export class SdkLoginComponent implements OnInit {
   constructor(private fb: FormBuilder, private authService: AuthService,private OktaConfig: OktaConfig) {}
 
   async ngOnInit() {
-    document.getElementById("config").style.visibility = "hidden";
-    this.strLanguage = '日本語';
+    // document.getElementById("config").style.visibility = "hidden";
+    // this.strLanguage = '日本語';
     this.loginform = this.fb.group({
       username: ["", Validators.email],
       password: ["", Validators.required]
@@ -38,9 +38,9 @@ export class SdkLoginComponent implements OnInit {
   }
 
   async onSubmit() {
-    console.log("event fired");
-    console.log("loginInvalid", this.loginInvalid);
-    console.log("formSubmitAttempt", this.formSubmitAttempt);
+    // console.log("event fired");
+    // console.log("loginInvalid", this.loginInvalid);
+    // console.log("formSubmitAttempt", this.formSubmitAttempt);
     console.log("returnUrl", this.OktaConfig.strRedirectURL);
 
     this.loginInvalid = false;

@@ -48,16 +48,16 @@ import { OktaAuthModule } from '@okta/okta-angular';
 import { WhoisoktaComponent } from './whoisokta/whoisokta.component';
 import { SdkLoginComponent } from './sdk-login/sdk-login.component';
 
-import { EnLoginPageComponent } from './en-login-page/en-login-page.component';
-import { EnSdkLoginComponent } from './en-sdk-login/en-sdk-login.component';
+// import { EnLoginPageComponent } from './en-login-page/en-login-page.component';
+// import { EnSdkLoginComponent } from './en-sdk-login/en-sdk-login.component';
 import { EnFooterComponent } from './shared/en-footer/en-footer.component';
-import { EnWhoisoktaComponent } from './en-whoisokta/en-whoisokta.component';
-import { EnPortalDisplaypageComponent } from './en-portal-displaypage/en-portal-displaypage.component';
-import { EnPortalComponent } from './en-portal/en-portal.component';
+// import { EnWhoisoktaComponent } from './en-whoisokta/en-whoisokta.component';
+// import { EnPortalDisplaypageComponent } from './en-portal-displaypage/en-portal-displaypage.component';
+// import { EnPortalComponent } from './en-portal/en-portal.component';
 import { UsersGroupsComponent } from './users-groups/users-groups.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatTabsModule } from '@angular/material/tabs';
-import { ConfigModalComponent } from './config-modal/config-modal.component'; 
+// import { ConfigModalComponent } from './config-modal/config-modal.component'; 
 import {CookieService} from 'ngx-cookie-service';
 import { ApiCheckComponent } from './api-check/api-check.component';
 import { DashboardDisplayPageComponent } from './dashboard-display-page/dashboard-display-page.component';
@@ -73,15 +73,15 @@ import { DashboardDisplayPageComponent } from './dashboard-display-page/dashboar
     LoginPageComponent,
     WhoisoktaComponent,
     SdkLoginComponent,
-    EnLoginPageComponent,
-    EnSdkLoginComponent,
+    // EnLoginPageComponent,
+    // EnSdkLoginComponent,
     EnFooterComponent,
-    EnWhoisoktaComponent,
-    EnPortalDisplaypageComponent,
-    EnPortalComponent,
+    // EnWhoisoktaComponent,
+    // EnPortalDisplaypageComponent,
+    // EnPortalComponent,
     UsersGroupsComponent,
     DashboardComponent,
-    ConfigModalComponent,
+    // ConfigModalComponent,
     ApiCheckComponent,
     DashboardDisplayPageComponent,
     

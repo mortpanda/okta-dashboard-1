@@ -102,6 +102,7 @@ export class ConfigModalComponent implements OnInit {
     this.strUserID = await fetch(this.RetOrgURL + this.strSessionMe, requestOptions).then(response => response.json())
     console.log(this.strUserID);
     console.log(this.strUserID.profile.email);
+    this.strSucess = "Sucess! below is your email address" 
     this.strConfirmed = this.strUserID.profile.email;
 
   }

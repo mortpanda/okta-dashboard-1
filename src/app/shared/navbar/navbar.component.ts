@@ -39,20 +39,20 @@ export class NavbarComponent implements OnInit {
         this.sidebarVisible = false;
     }
 
-    openConfigModal() {
-        const dialogConfig = new MatDialogConfig();
+    // openConfigModal() {
+    //     const dialogConfig = new MatDialogConfig();
 
-        this.sidebarClose();
+    //     this.sidebarClose();
 
-        // 表示するdialogの設定
-        //dialogConfig.disableClose = true;
-        dialogConfig.id = "login-component";
-        dialogConfig.height = "500px";
-        dialogConfig.width = "500px";
+    //     // 表示するdialogの設定
+    //     //dialogConfig.disableClose = true;
+    //     dialogConfig.id = "login-component";
+    //     dialogConfig.height = "500px";
+    //     dialogConfig.width = "500px";
 
 
-        const modalDialog = this._matdialog.open(ConfigModalComponent, dialogConfig);
-    }
+    //     const modalDialog = this._matdialog.open(ConfigModalComponent, dialogConfig);
+    // }
 
     ngOnInit() {
         const navbar: HTMLElement = this.element.nativeElement;
