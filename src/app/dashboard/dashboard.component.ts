@@ -25,6 +25,7 @@ export class DashboardComponent implements OnInit {
   arrsize;
   strResponseBody;
   strResponse;
+  strPagLinks;
 
   constructor(private http: HttpClient, private OktaConfig: OktaConfig, private OktaAuthClient: OktaSDKAuthService) { }
 
@@ -80,30 +81,35 @@ export class DashboardComponent implements OnInit {
       })
     })
       .then(function (response) {
-        console.log(response.status);
-
+        var strJsonBody = response.json();
+        var strLinks = response.headers.get("link");
+        //console.log(response.status);
         //console.log(response.body);
         //console.log(this.strResponseBody);
-        console.log(response.headers.get("link"));
-        return response.json();
+        //console.log(response.headers.get("link"));
+        return {strJsonBody,strLinks}
+        
+        
 
-      }).then(function (json) {
-        console.log(json)
+        // var strLinks
+        // return response.headers.get("link")
+        //strLinks = response.headers.get("link")
+        //var strResponseBody
+        //return response.body
       })
-
-    //const strUserGet = async () => {
-    //const strUseremail = await this.strResponse;
-    //console.log(strUseremail.body);
-    //console.log(strUseremail.headers.get("link"));
-    //console.log(strUseremail.status);
-
+      // .then(function (json) {
+      //   //console.log(json);
+      // })
+    const strUserGet = async () => {
+      const strUserList = await this.strResponse.strJsonBody;
+      this.strResponseBody = strUserList;
+      console.log(this.strResponseBody);
+      const strPagLinkCol = await this.strResponse.strLinks;
+      this.strPagLinks=strPagLinkCol;
+      console.log(this.strPagLinks);
+    }
+    strUserGet();
   }
-  //strUserGet();
-
-
-
-
-
 
 }
 
