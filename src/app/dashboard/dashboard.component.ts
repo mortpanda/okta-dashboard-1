@@ -3,8 +3,8 @@ import { ViewEncapsulation } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { OktaConfig } from "app/shared/okta/okta-config";
 import { OktaSDKAuthService } from 'app/shared/okta/okta-auth-service';
-import { OktaAuth } from "@okta/okta-auth-js";
-
+//import { OktaAuth } from "@okta/okta-auth-js";
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-dashboard',
@@ -29,13 +29,13 @@ export class DashboardComponent implements OnInit {
   strPagLinks;
   boolPagination;
 
-  constructor(private http: HttpClient, private OktaConfig: OktaConfig, private OktaAuthClient: OktaSDKAuthService) { }
+  constructor(private http: HttpClient, private OktaConfig: OktaConfig, private OktaAuthClient: OktaSDKAuthService,private cookieService: CookieService) { }
 
   ngOnInit(): void {
   }
 
   async GetUsers() {
-
+    console.log('get cookie : ' + this.cookieService.get('paginationURL'));
     await this.OktaAuthClient.OktaSDKAuthClient.session.refresh()
       .then(function (session) {
         // existing session is now refreshed
@@ -58,11 +58,11 @@ export class DashboardComponent implements OnInit {
     // //   this.strURL = this.strPaginationNext;
     // //   console.log("Found pagination URL so setting the endpoint to : " + this.strURL);
     // // }
-
+    this.strPaginationNext = "0";
 
     const strGetandProcessInfo = async () => {
       console.log('Starting url : ' + this.strURL);
-      this.strURL = this.strPaginationNext;
+      //this.strURL = this.strPaginationNext;
       //console.log(this.strURL);
       const strUserList = await this.strResponse.strJsonBody;
       this.strResponseBody = strUserList;
@@ -83,7 +83,7 @@ export class DashboardComponent implements OnInit {
             this.arrLineRecords = this.arrLinks[this.strCounterA].split(";")
 
             if (this.arrLineRecords[1] = 'rel="next"') {
-              
+
               switch (this.arrLineRecords[0].includes("after=")) {
                 case true: {
                   console.log("Found a link that looks like a pagination URL...")
@@ -91,33 +91,46 @@ export class DashboardComponent implements OnInit {
                   this.strPaginationNext = "";
                   this.strPaginationNext = this.arrLineRecords[0];
                   this.strPaginationNext = this.strPaginationNext.replace('>', '')
-                  //this.strURL = this.strPaginationNext.replace('<', '');
-                  // console.log("Pagination URL is : " + this.strURL);
+                  this.strURL = this.strPaginationNext.replace('<', '');
+                  console.log("Pagination URL is : " + this.strURL);
+                  this.cookieService.set('paginationURL',this.strURL );
                   //console.log(this.boolPagination);
+                  
                   break;
                 }
 
                 case false: {
                   this.boolPagination = false;
                   //console.log(this.boolPagination);
+                  this.strPaginationNext = '0';
                   break;
                 }
               }
               (err) => {
                 console.error(err);
               };
-              
+
             }
             console.log('Is the URL ' + this.arrLineRecords[0] + ' a pagination URL? : ' + this.boolPagination);
           }
-          
+
       }
-      
+
     }
-    
-    this.strURL = this.OktaConfig.strBaseURI + this.strActiveUserFilter;
+/////  
+//while ()
+
+    if (this.strPaginationNext = "0") {
+      this.strURL = this.OktaConfig.strBaseURI + this.strActiveUserFilter;
+      //this.boolPagination = false;
+    }
+    else {
+      this.strURL = this.strPaginationNext;
+      //this.boolPagination = true;
+    }
+    console.log('URL to call : ' + this.strURL)
     // while (this.boolPagination = false); {
-      
+
     //   switch (this.strURL.includes("after=")) {
     //     case true: {
     //       this.boolPagination = true;
@@ -138,25 +151,27 @@ export class DashboardComponent implements OnInit {
     //     console.error(err);
     //   };
     
-      this.strResponse = await fetch(this.strURL, {
-        headers: new Headers({
-          'Authorization': 'Bearer ' + this.strAccessToken,
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        })
+    this.strResponse = await fetch(this.strURL, {
+      headers: new Headers({
+        'Authorization': 'Bearer ' + this.strAccessToken,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
       })
-        .then(function (response) {
-          var strJsonBody = response.json();
-          var strLinks = response.headers.get("link");
-          return { strJsonBody, strLinks }
-        })
-        
-        strGetandProcessInfo();
+    })
+      .then(function (response) {
+        var strJsonBody = response.json();
+        var strLinks = response.headers.get("link");
+        return { strJsonBody, strLinks }
+      })
+
+    strGetandProcessInfo();
+/////
+
       
-      //console.log(this.strPaginationNext);
 
     // }
   }
+
 }
 
 
