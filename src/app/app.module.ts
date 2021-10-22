@@ -61,6 +61,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import {CookieService} from 'ngx-cookie-service';
 import { ApiCheckComponent } from './api-check/api-check.component';
 import { DashboardDisplayPageComponent } from './dashboard-display-page/dashboard-display-page.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -121,8 +122,8 @@ import { DashboardDisplayPageComponent } from './dashboard-display-page/dashboar
     MatSnackBarModule,
     HttpClientModule,
     OktaAuthModule,
-    MatSelectModule
-
+    MatSelectModule,
+    ChartsModule,
   ],
   providers: [OktaSDKAuthService,CookieService], 
   bootstrap: [AppComponent]
