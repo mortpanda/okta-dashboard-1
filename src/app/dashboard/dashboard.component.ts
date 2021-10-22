@@ -6,6 +6,7 @@ import { OktaSDKAuthService } from 'app/shared/okta/okta-auth-service';
 //import { OktaAuth } from "@okta/okta-auth-js";
 import { CookieService } from 'ngx-cookie-service';
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -15,7 +16,9 @@ import { CookieService } from 'ngx-cookie-service';
 export class DashboardComponent implements OnInit {
   strAccessToken;
   //strActiveUserFilter = '/api/v1/users?after=000uq07q15TTHkPxJa1d6&limit=50';
-  strActiveUserFilter = '/api/v1/users?active=true&limit=10';
+  //strActiveUserFilter = '/api/v1/users?&limit=10';
+  //strActiveUserFilter = '/api/v1/users?after=000uq07q15TTHkPxJa1d6&limit=10';
+  strActiveUserFilter = '/api/v1/users';
   strTestStuff;
   strPaginationNext;
   strURL;
@@ -27,188 +30,269 @@ export class DashboardComponent implements OnInit {
   strResponseBody;
   strResponse;
   strPagLinks;
+  PaginationURLValue;
   boolPagination;
 
-  constructor(private http: HttpClient, private OktaConfig: OktaConfig, private OktaAuthClient: OktaSDKAuthService,private cookieService: CookieService) { }
+  constructor(private http: HttpClient, private OktaConfig: OktaConfig, private OktaAuthClient: OktaSDKAuthService, private cookieService: CookieService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+
   }
 
   async GetUsers() {
-    console.log('get cookie : ' + this.cookieService.get('paginationURL'));
-    await this.OktaAuthClient.OktaSDKAuthClient.session.refresh()
-      .then(function (session) {
-        // existing session is now refreshed
-        console.log(session)
-      })
-      .catch(function (err) {
-        // there was a problem refreshing (the user may not have an existing session)
-      });
-
-    //Get Access token from the TokenManager
     this.strAccessToken = this.OktaAuthClient.OktaSDKAuthClient.getAccessToken();
-    console.log("Access Token : " + this.strAccessToken);
-    //console.log(this.strPaginationNext)
+    // console.log("Access Token : " + this.strAccessToken);
+    this.strURL = this.OktaConfig.strBaseURI + this.strActiveUserFilter;
+    console.log(this.strAccessToken);
+    let stringAccessToken = this.strAccessToken;
+    /////////////////////////////////////
+    async function fetchRequest(url) {
 
-    // // if (this.strPaginationNext = 'undefined') {
-    // this.strURL = this.OktaConfig.strBaseURI + this.strActiveUserFilter;
-    // //   console.log("Pagination URL is not present so setting the endpoint to : " + this.strURL);
-    // // }
-    // // if (this.strPaginationNext.length > 10) {
-    // //   this.strURL = this.strPaginationNext;
-    // //   console.log("Found pagination URL so setting the endpoint to : " + this.strURL);
-    // // }
-    this.strPaginationNext = "0";
+      try {
+        // Fetch request and parse as JSON
+        const response = await fetch(url, {
+            headers: new Headers({
+              'Authorization': 'Bearer ' + stringAccessToken,
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            })
+          });
 
-    const strGetandProcessInfo = async () => {
-      console.log('Starting url : ' + this.strURL);
-      //this.strURL = this.strPaginationNext;
-      //console.log(this.strURL);
-      const strUserList = await this.strResponse.strJsonBody;
-      this.strResponseBody = strUserList;
-      //console.log("number of records : "+this.strResponseBody.length);
-      console.log(this.strResponseBody);
-      const strPagLinkCol = await this.strResponse.strLinks;
-      this.strPagLinks = strPagLinkCol;
-      console.log('Found links : ' + this.strPagLinks);
-
-      //Work on the pagination links
-      this.arrLinks = this.strPagLinks.split(",");
-      console.log("Number of links : " + this.arrLinks.length);
-      switch (this.arrLinks.length) {
-        case 2:
-          //console.log("Number of records in link array : " + this.arrLinks.length)
-          for (this.strCounterA = 0; this.strCounterA < this.arrLinks.length; this.strCounterA++) {
-            //console.log(this.arrLinks[this.strCounterA])
-            this.arrLineRecords = this.arrLinks[this.strCounterA].split(";")
-
-            if (this.arrLineRecords[1] = 'rel="next"') {
-
-              switch (this.arrLineRecords[0].includes("after=")) {
-                case true: {
-                  console.log("Found a link that looks like a pagination URL...")
-                  this.boolPagination = true;
-                  this.strPaginationNext = "";
-                  this.strPaginationNext = this.arrLineRecords[0];
-                  this.strPaginationNext = this.strPaginationNext.replace('>', '')
-                  this.strURL = this.strPaginationNext.replace('<', '');
-                  console.log("Pagination URL is : " + this.strURL);
-                  this.cookieService.set('paginationURL',this.strURL );
-                  //console.log(this.boolPagination);
-                  
-                  break;
-                }
-
-                case false: {
-                  this.boolPagination = false;
-                  //console.log(this.boolPagination);
-                  this.strPaginationNext = '0';
-                  break;
-                }
-              }
-              (err) => {
-                console.error(err);
-              };
-
-            }
-            console.log('Is the URL ' + this.arrLineRecords[0] + ' a pagination URL? : ' + this.boolPagination);
-          }
-
-      }
-
-    }
-/////  
-//while ()
-
-    if (this.strPaginationNext = "0") {
-      this.strURL = this.OktaConfig.strBaseURI + this.strActiveUserFilter;
-      //this.boolPagination = false;
-    }
-    else {
-      this.strURL = this.strPaginationNext;
-      //this.boolPagination = true;
-    }
-    console.log('URL to call : ' + this.strURL)
-    // while (this.boolPagination = false); {
-
-    //   switch (this.strURL.includes("after=")) {
-    //     case true: {
-    //       this.boolPagination = true;
-    //       //console.log("Pagination URL is : " + this.strPaginationNext);
-    //       console.log("Pagination URL is : " + this.strURL);
-    //       console.log("Pagination url : " + this.boolPagination)
-    //       break;
-    //     }
-
-    //     case false: {
-    //       this.boolPagination = false;
-    //       console.log("the URL is : " + this.strURL);
-    //       console.log("Pagination url : " + this.boolPagination)
-    //       break;
-    //     }
-    //   }
-    //   (err) => {
-    //     console.error(err);
-    //   };
+        let data = await response.json();
     
-    this.strResponse = await fetch(this.strURL, {
-      headers: new Headers({
-        'Authorization': 'Bearer ' + this.strAccessToken,
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      })
-    })
-      .then(function (response) {
-        var strJsonBody = response.json();
-        var strLinks = response.headers.get("link");
-        return { strJsonBody, strLinks }
-      })
-
-    strGetandProcessInfo();
-/////
-
-      
-
-    // }
-  }
-
+        // Extract the url of the response's "next" relational Link header
+        let next_page;
+        if (/<([^>]+)>; rel="next"/g.test(response.headers.get("link"))) {
+          next_page = /<([^>]+)>; rel="next"/g.exec(response.headers.get("link"))[1];
+        }
+    
+        // If another page exists, merge its output into the array recursively
+        if (next_page) {
+          data = data.concat(await fetchRequest(next_page));
+        }
+        return data;
+      } catch (err) {
+        return console.error(err);
+      }
+    }
+    /////////////////////////////////////
+    
+    /////////////////////////////////////
+    fetchRequest(this.strURL).then(data =>
+      console.log(data.length)
+    );
+    /////////////////////////////////////
 }
 
 
-//   await this.http.get<any>(this.strURL, {
-    //     headers: {
+// this.strResponse = await fetch(this.strURL, {
+//   headers: new Headers({
+//     'Authorization': 'Bearer ' + this.strAccessToken,
+//     'Accept': 'application/json',
+//     'Content-Type': 'application/json'
+//   })
+// })
+//   .then(function (response) {
+//     var strJsonBody = response.json();
+//     var strLinks = response.headers.get("link");
+//     return { strJsonBody, strLinks }
+//   })
+// const strUserList = await this.strResponse.strJsonBody;
+// this.strResponseBody = strUserList;
+// //console.log("number of records : "+this.strResponseBody.length);
+// console.log(this.strResponseBody);    
+
+// const strPagLinkCol = await this.strResponse.strLinks;
+// this.strPagLinks = strPagLinkCol;
+// //console.log('Found links : ' + this.strPagLinks);
+
+// var parse = require('parse-link-header');
+// var parsed = parse(this.strPagLinks);
+// console.log(parsed.next.url);
+
+
+
+//this.cookieService.set('pagination', 'true');
+    // this.cookieService.set('paginationURL', '0');
+
+    // //console.log('get cookie : ' + this.cookieService.get('paginationURL'));
+    // await this.OktaAuthClient.OktaSDKAuthClient.session.refresh()
+    //   .then(function (session) {
+    //     // existing session is now refreshed
+    //     console.log(session)
+    //   })
+    //   .catch(function (err) {
+    //     // there was a problem refreshing (the user may not have an existing session)
+    //   });
+    // this.strAccessToken = this.OktaAuthClient.OktaSDKAuthClient.getAccessToken();
+    // console.log("Access Token : " + this.strAccessToken);
+
+    // do {
+    //   this.boolPagination = this.cookieService.get('pagination');
+    //   console.log(this.boolPagination);
+    //   console.log('First check + ' + this.cookieService.get('pagination'));
+    //   this.PaginationURLValue = this.cookieService.get('paginationURL');
+    //   if (this.PaginationURLValue = '0') {
+    //     // case '0':
+    //       console.log('pagination? : ' + this.PaginationURLValue)
+    //       this.strURL = this.OktaConfig.strBaseURI + this.strActiveUserFilter;
+    //       console.log('Starting url : ' + this.strURL);
+    //   }
+    //     else{
+    //       console.log('pagination? : ' + this.PaginationURLValue)
+    //       this.strURL = this.cookieService.get('paginationURL');
+
+    //   }
+
+    //   const strGetandProcessInfo = async () => {
+
+    //     const strUserList = await this.strResponse.strJsonBody;
+    //     this.strResponseBody = strUserList;
+    //     //console.log("number of records : "+this.strResponseBody.length);
+    //     console.log(this.strResponseBody);
+    //     const strPagLinkCol = await this.strResponse.strLinks;
+    //     this.strPagLinks = strPagLinkCol;
+    //     console.log('Found links : ' + this.strPagLinks);
+
+    //     //Work on the pagination links
+    //     this.arrLinks = this.strPagLinks.split(",");
+    //     console.log("Number of links : " + this.arrLinks.length);
+    //     switch (this.arrLinks.length) {
+    //       case 2:
+
+    //         for (this.strCounterA = 0; this.strCounterA < this.arrLinks.length; this.strCounterA++) {
+
+    //           this.arrLineRecords = this.arrLinks[this.strCounterA].split(";")
+
+    //           if (this.arrLineRecords[1] = 'rel="next"') {
+
+    //             switch (this.arrLineRecords[0].includes("after=")) {
+    //               case true: {
+    //                 console.log("Found a link that looks like a pagination URL...")
+    //                 //this.boolPagination = true;
+    //                 this.strPaginationNext = "";
+    //                 this.strPaginationNext = this.arrLineRecords[0];
+    //                 this.strPaginationNext = this.strPaginationNext.replace('>', '')
+    //                 this.strURL = this.strPaginationNext.replace('<', '');
+    //                 console.log("Pagination URL is and storing to cookie : " + this.strURL);
+    //                 this.cookieService.set('pagination', 'true');
+    //                 this.cookieService.set('paginationURL', this.strURL);
+    //                 //console.log(this.boolPagination);
+    //                 this.strURL = " ";
+    //                 //break;
+    //               }
+
+    //               case false: {
+    //                 //this.boolPagination = false;
+    //                 //console.log(this.boolPagination);
+    //                 this.cookieService.set('pagination', 'false');
+    //                 //this.strPaginationNext = '0';
+    //                 //break;
+    //               }
+    //             }
+    //             (err) => {
+    //               console.error(err);
+    //             };
+
+    //           }
+    //           if (this.arrLineRecords[1] = 'rel="self"') {
+    //             this.cookieService.set('pagination', 'false');
+
+    //           }
+    //         }
+
+
+    //     }
+
+    //   }
+    //   /////  
+
+
+
+    //   this.strResponse = await fetch(this.strURL, {
+    //     headers: new Headers({
     //       'Authorization': 'Bearer ' + this.strAccessToken,
     //       'Accept': 'application/json',
-    //       'Content-Type': 'application/json',
-    //     },
-    //     observe: 'response',
-    //   }).subscribe((data: any) => {
-    //     // Use the data returned by the API
+    //       'Content-Type': 'application/json'
+    //     })
+    //   })
+    //     .then(function (response) {
+    //       var strJsonBody = response.json();
+    //       var strLinks = response.headers.get("link");
+    //       return { strJsonBody, strLinks }
+    //     })
 
-    //     var oktausers = data.body;
-    //     console.log(oktausers)
-    //     this.strResponseBody = oktausers
-    //     this.arrLinks = data.headers.get('link').split(",");
-    //     console.log(this.arrLinks.length);
-    //     this.arrsize=JSON.stringify(this.arrLinks.length);
-    //     console.log(this.arrsize)
-    //     // switch (this.arrLinks.length){
-    //     //   case 2:
-    //     //     console.log("Number of records in array : " + this.arrLinks.length)
-    //     //     for (this.strCounterA = 0; this.strCounterA < this.arrLinks.length; this.strCounterA++) {
-    //     //       console.log(this.arrLinks[this.strCounterA])
-    //     //       this.arrLineRecords = this.arrLinks[this.strCounterA].split(";")
+    //   strGetandProcessInfo();
+    //   /////
 
-    //     //       if (this.arrLineRecords[1] = 'rel="next"') {
-    //     //         console.log(this.arrLineRecords[0]);
-    //     //         this.strPaginationNext = this.arrLineRecords[0];
-    //     //       }
-    //     //     }
 
-    //     // }
 
-    //   }, (err) => {
-    //     console.error(err);
-    //   });
-    // // } while (this.arrsize !== 2);
-    // console.log(this.strResponseBody);
+    //   // }
+    // } 
+
+    // while (this.boolPagination=='true'){}
+    
+
+
+
+    // this.cookieService.set('pagination', 'initial');
+    // this.cookieService.set('paginationURL', '0');
+
+    // do {
+    //   this.boolPagination = this.cookieService.get('pagination');
+    //   console.log('Pagination cookie value : ' + this.boolPagination);
+    //   this.PaginationURLValue = this.cookieService.get('paginationURL');
+    //   console.log('Pagination URL value : ' + this.PaginationURLValue);
+
+    //   switch (this.boolPagination) {
+    //     case 'initial':
+    //       this.strURL = this.OktaConfig.strBaseURI + this.strActiveUserFilter;
+    //       console.log('Starting URL : ' + this.OktaConfig.strBaseURI + this.strActiveUserFilter);
+    //       this.cookieService.set('paginationURL', 'http:/localhost');
+    //       this.cookieService.set('pagination', 'true');
+
+    //       this.strResponse = fetch(this.strURL, {
+    //         headers: new Headers({
+    //           'Authorization': 'Bearer ' + this.strAccessToken,
+    //           'Accept': 'application/json',
+    //           'Content-Type': 'application/json'
+    //         })
+    //       })
+    //         .then(function (response) {
+    //           var strJsonBody = response.text();
+    //           var strLinks = response.headers.get("link");
+    //           console.log(strJsonBody);
+    //           console.log(strLinks);
+              
+    //           var arrLinks = strLinks.split(",");
+    //           for (var i = 0; i < arrLinks.length; i++) {
+    //             console.log(arrLinks[i]);
+    //           }
+              
+              
+    //           return { strJsonBody, strLinks }
+              
+    //         })
+            
+    //     case 'true':
+    //       console.log('intermediate : ' + this.cookieService.get('pagination'));
+    //       this.strURL = this.cookieService.get('paginationURL');
+    //       console.log(this.strURL);
+    //       this.cookieService.set('pagination', 'false');
+
+
+    //     case 'false':
+    //       this.cookieService.set('pagination', 'end of page');
+    //       this.cookieService.set('paginationURL', 'no more URLs');
+    //       console.log(this.cookieService.get('pagination'));
+    //       console.log(this.cookieService.get('paginationURL'));
+    //       break;
+    //   }
+
+    // } while (this.boolPagination == false) {
+    //   console.log('end')
+      
+    // }
+    
+    // 
+  }
