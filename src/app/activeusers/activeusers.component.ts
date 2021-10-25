@@ -13,6 +13,8 @@ import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label, BaseChartDirective } from 'ng2-charts';
 import { Color } from 'ng2-charts';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {ActivetotalComponent} from 'app/activetotal/activetotal.component';
+
 
 @Component({
   selector: 'app-activeusers',
@@ -32,6 +34,8 @@ export class ActiveusersComponent implements OnInit {
   numPWExpiredUsers;
   numLockedOutUsers;
   numSuspendedUsers
+
+  numTotalLicensedUsers;
 
   strUserArraySize;
 
@@ -65,7 +69,7 @@ export class ActiveusersComponent implements OnInit {
   public chart: BaseChartDirective;
 
   constructor(private OktaConfig: OktaConfig, private OktaAuthClient: OktaSDKAuthService, private cookieService: CookieService
-    ,private _snackBar: MatSnackBar) { }
+    ,private _snackBar: MatSnackBar, private ActivetotalComponent:ActivetotalComponent) { }
 
   updateChart() {
     //this.barChartData.push();
@@ -79,7 +83,7 @@ export class ActiveusersComponent implements OnInit {
   }
 
   async GetUsers() {
-    
+    this.numTotalLicensedUsers='0';
     this._snackBar.open('Data Download in Progress');
     console.log(this.OktaConfig.strStagedUsersFilter);
     this.strURL = this.OktaConfig.strBaseURI + this.OktaConfig.strRecoveryUserFilter;
@@ -131,6 +135,7 @@ export class ActiveusersComponent implements OnInit {
     //this.chart.chart.update();
     this.updateChart();
     this._snackBar.dismiss();
+    this.ActivetotalComponent.GetActiveToalFromCookie();
   }
 
 
@@ -204,33 +209,45 @@ export class ActiveusersComponent implements OnInit {
       case this.OktaConfig.strBaseURI + this.OktaConfig.strProvisionedUsersFilter:
         strUserType = "Provisioned Users : "
         this.cookieService.set('OktaProvisionedUsers', this.strUserArraySize);
+        // this.numTotalLicensedUsers = Number(this.numTotalLicensedUsers) + Number(this.strUserArraySize);
+        // this.cookieService.set('OktaTotalActiveUsers', this.numTotalLicensedUsers);
         break;
       case this.OktaConfig.strBaseURI + this.OktaConfig.strActiveUserFilter:
 
         strUserType = "Active Users : "
         this.cookieService.set('OktaActiveUsers', this.strUserArraySize);
+        this.numTotalLicensedUsers = Number(this.numTotalLicensedUsers) + Number(this.strUserArraySize);
+        this.cookieService.set('OktaTotalActiveUsers', this.numTotalLicensedUsers);
         break;
 
       case this.OktaConfig.strBaseURI + this.OktaConfig.strRecoveryUserFilter:
 
         strUserType = "Users in Recovery state : "
         this.cookieService.set('OktaRecoveryUsers', this.strUserArraySize);
+        this.numTotalLicensedUsers = Number(this.numTotalLicensedUsers) + Number(this.strUserArraySize);
+        this.cookieService.set('OktaTotalActiveUsers', this.numTotalLicensedUsers);
         break;
       case this.OktaConfig.strBaseURI + this.OktaConfig.strPWExpiredFilter:
 
         strUserType = "Password Expired Users : "
         this.cookieService.set('OktaPWExpiredUsers', this.strUserArraySize);
+        this.numTotalLicensedUsers = Number(this.numTotalLicensedUsers) + Number(this.strUserArraySize);
+        this.cookieService.set('OktaTotalActiveUsers', this.numTotalLicensedUsers);
         break;
       case this.OktaConfig.strBaseURI + this.OktaConfig.strLockedOutFilter:
 
         strUserType = "Locked out Users : "
         this.cookieService.set('OktaLockedoutUsers', this.strUserArraySize);
+        this.numTotalLicensedUsers = Number(this.numTotalLicensedUsers) + Number(this.strUserArraySize);
+        this.cookieService.set('OktaTotalActiveUsers', this.numTotalLicensedUsers);
         break;
 
       case this.OktaConfig.strBaseURI + this.OktaConfig.strSuspendedFilter:
 
         strUserType = "Suspended Users : "
         this.cookieService.set('OktaSuspendedUsers', this.strUserArraySize);
+        this.numTotalLicensedUsers = Number(this.numTotalLicensedUsers) + Number(this.strUserArraySize);
+        this.cookieService.set('OktaTotalActiveUsers', this.numTotalLicensedUsers);
         break;
     }
     await fetchRequest(strUserCountURL);

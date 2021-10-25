@@ -58,6 +58,9 @@ import { DashboardDisplayPageComponent } from './dashboard-display-page/dashboar
 import { ChartsModule } from 'ng2-charts';
 import { ActiveusersComponent } from './activeusers/activeusers.component';
 import { InactiveusersComponent } from './inactiveusers/inactiveusers.component';
+import { ActivetotalComponent } from './activetotal/activetotal.component';
+
+
 
 
 
@@ -78,6 +81,9 @@ import { InactiveusersComponent } from './inactiveusers/inactiveusers.component'
     DashboardDisplayPageComponent,
     ActiveusersComponent,
     InactiveusersComponent,
+    ActivetotalComponent,
+    
+    
     
     
     
@@ -119,7 +125,7 @@ import { InactiveusersComponent } from './inactiveusers/inactiveusers.component'
     MatSelectModule,
     ChartsModule,
   ],
-  providers: [OktaSDKAuthService,CookieService,ActiveusersComponent,InactiveusersComponent,ChartsModule], 
+  providers: [OktaSDKAuthService,CookieService,ActiveusersComponent,InactiveusersComponent,ChartsModule,ActivetotalComponent], 
   bootstrap: [AppComponent]
 })
 export class AppModule { }
