@@ -95,7 +95,6 @@ export class ActiveusersComponent implements OnInit {
     this.FunctionGetUserCount(this.OktaConfig.strBaseURI + this.OktaConfig.strPWExpiredFilter, this.strAccessToken);
     this.strUserArraySize = '';
     this.FunctionGetUserCount(this.OktaConfig.strBaseURI + this.OktaConfig.strLockedOutFilter, this.strAccessToken);
-
     const UpdateActiveUserCharts = async () => {
       const strResult = await this.FunctionGetUserCount(this.OktaConfig.strBaseURI + this.OktaConfig.strActiveUserFilter, this.strAccessToken)
     }
@@ -136,7 +135,7 @@ export class ActiveusersComponent implements OnInit {
 
 
   async FunctionGetUserCount(strUserCountURL, myToken) {
-    this.numActiveUsers = '';
+    //this.numActiveUsers = '';
     var strUserType;
     console.log('Calling... : ' + strUserCountURL);
     /////////////////////////////////////
@@ -162,7 +161,7 @@ export class ActiveusersComponent implements OnInit {
         break;
 
     }
-    myToken = this.strAccessToken;
+    //myToken = this.strAccessToken;
     /////////////////////////////////////
     async function fetchRequest(url) {
       try {

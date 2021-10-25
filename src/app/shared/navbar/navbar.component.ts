@@ -7,7 +7,7 @@ import { ViewChild, AfterViewInit } from '@angular/core';
 import { OktaSDKAuthService } from 'app/shared/okta/okta-auth-service';
 import { Router } from '@angular/router';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { ConfigModalComponent } from 'app/config-modal/config-modal.component';
+//import { ConfigModalComponent } from 'app/config-modal/config-modal.component';
 
 
 interface Food {

@@ -1,26 +1,11 @@
-<!-- <div class="wrapper">
-    <div class="page-header" data-parallax="true" style="background-image: url('./assets/img/okta-blue.jpg');">
-
-        
-        <div class="moving-clouds" style="background-image: url('assets/img/clouds.png'); "></div>
-        <div class="filter"></div> -->
-
-
 <mat-tab-group class="tabGroup">
-    <mat-tab label="Users"> 
-        <!-- <a class="btn btn-danger btn-round config UserInfo_btn" id="UserInfo_btn"
-            (click)="GetUsers()">Get User Info</a> -->
-
-            <!-- <a class="btn btn-danger btn-round config UserInfo_btn" id="UserInfo_btn"
-            (click)="GetAllUsers()">Get All Users</a>  -->
-
+    <mat-tab label="Users">
         <div class="fxcontainer" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px">
 
             <div class="item item1 UserCount" id="UserCount">
-               <app-activeusers></app-activeusers>
+                <app-activeusers></app-activeusers>
 
             </div>
-
 
             <div class="item item1 UserCount" id="UserCount">
                 <app-inactiveusers></app-inactiveusers>
@@ -34,34 +19,38 @@
                 </a>
 
             </div>
-
-            <!-- <div class="item item1" id="stagedUsers">
-                <div>
-                    <canvas baseChart
-                      [datasets]="barChartData"
-                      [labels]="barChartLabels"
-                      [options]="barChartOptions"
-                      [plugins]="barChartPlugins"
-                      [legend]="barChartLegend"
-                      [chartType]="barChartType">
-                    </canvas>
-                  </div> 
-            </div> -->
-            <!-- <div class="item item1" id="memberMoodle">
-                <a mat-button href="https://angular-ciam-demo-moodle.csm-apac-1.duckdns.org" target="_blank"
-                    class="btn_moodle">
-                    オンライン<br>トレーニング
-                </a>
-
-            </div> -->
-
-
         </div>
 
     </mat-tab>
-    <mat-tab label="Groups"> Content 2 </mat-tab>
+    <mat-tab label="Groups"> Content 2
+        <div class="fxcontainer" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px">
 
-    <mat-tab label="Apps"> Content 3 </mat-tab>
+            <div class="item item1 UserCount" id="UserCount">
+                <!-- <app-activeusers></app-activeusers> -->
+
+            </div>
+
+
+            <div class="item item1 UserCount" id="UserCount">
+                <!-- <app-inactiveusers></app-inactiveusers> -->
+            </div>
+
+            <div class="item item1" id="memberProfile">
+                <a mat-button href="https://mortpanda.github.io/ciam-angular-portal-profile/home" target="_blank"
+                    class="btn_profile">
+                    User Information<br>
+                    {{strTestStuff}}
+                </a>
+
+            </div>
+        </div>
+
+    </mat-tab>
+    <mat-tab label="Apps"> Content 3
+
+
+
+    </mat-tab>
 
 
 

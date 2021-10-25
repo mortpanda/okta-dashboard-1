@@ -53,7 +53,7 @@ import { UsersGroupsComponent } from './users-groups/users-groups.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import {CookieService} from 'ngx-cookie-service';
-import { ApiCheckComponent } from './api-check/api-check.component';
+
 import { DashboardDisplayPageComponent } from './dashboard-display-page/dashboard-display-page.component';
 import { ChartsModule } from 'ng2-charts';
 import { ActiveusersComponent } from './activeusers/activeusers.component';
@@ -75,7 +75,6 @@ import { InactiveusersComponent } from './inactiveusers/inactiveusers.component'
     EnFooterComponent,
     UsersGroupsComponent,
     DashboardComponent,
-    ApiCheckComponent,
     DashboardDisplayPageComponent,
     ActiveusersComponent,
     InactiveusersComponent,
