@@ -7,29 +7,23 @@
 
 
 <mat-tab-group class="tabGroup">
-    <mat-tab label="Users"> <a class="btn btn-danger btn-round config UserInfo_btn" id="UserInfo_btn"
-            (click)="GetUsers()">Get User Info</a>
+    <mat-tab label="Users"> 
+        <!-- <a class="btn btn-danger btn-round config UserInfo_btn" id="UserInfo_btn"
+            (click)="GetUsers()">Get User Info</a> -->
 
-            <a class="btn btn-danger btn-round config UserInfo_btn" id="UserInfo_btn"
-            (click)="GetAllUsers()">Get All Users</a>
+            <!-- <a class="btn btn-danger btn-round config UserInfo_btn" id="UserInfo_btn"
+            (click)="GetAllUsers()">Get All Users</a>  -->
 
         <div class="fxcontainer" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px">
 
             <div class="item item1 UserCount" id="UserCount">
-                <h2>License Consumption</h2>
-                Active Users Count : {{numActiveUsers}}<br>
-                Recovery Users : {{numRecoveryUsers}}<br>
-                Users Locked out : {{numLockedOutUsers}}<br>
-                Users Suspeneded : {{numSuspendedUsers}}<br>
+               <app-activeusers></app-activeusers>
 
             </div>
 
 
             <div class="item item1 UserCount" id="UserCount">
-                <h2>License Not Consumed</h2>
-                Staged Users Count : {{numStagedUsers}}<br>
-                Provisioned Users : {{numProvisionedUsers}}
-                Deprovisioned Users : {{numDeprovisionedUsers}}
+                <app-inactiveusers></app-inactiveusers>
             </div>
 
             <div class="item item1" id="memberProfile">
@@ -41,7 +35,7 @@
 
             </div>
 
-            <div class="item item1" id="stagedUsers">
+            <!-- <div class="item item1" id="stagedUsers">
                 <div>
                     <canvas baseChart
                       [datasets]="barChartData"
@@ -51,8 +45,8 @@
                       [legend]="barChartLegend"
                       [chartType]="barChartType">
                     </canvas>
-                  </div>
-            </div>
+                  </div> 
+            </div> -->
             <!-- <div class="item item1" id="memberMoodle">
                 <a mat-button href="https://angular-ciam-demo-moodle.csm-apac-1.duckdns.org" target="_blank"
                     class="btn_moodle">
