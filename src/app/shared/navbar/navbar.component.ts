@@ -8,7 +8,7 @@ import { OktaSDKAuthService } from 'app/shared/okta/okta-auth-service';
 import { Router } from '@angular/router';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 //import { ConfigModalComponent } from 'app/config-modal/config-modal.component';
-
+import { CookieService } from 'ngx-cookie-service';
 
 interface Food {
     value: string;
@@ -35,7 +35,8 @@ export class NavbarComponent implements OnInit {
 
 
 
-    constructor(public location: Location, private element: ElementRef, public _matdialog: MatDialog, private OktaAuthClient: OktaSDKAuthService, private router: Router) {
+    constructor(public location: Location, private element: ElementRef, public _matdialog: MatDialog, 
+        private OktaAuthClient: OktaSDKAuthService, private router: Router,private cookieService: CookieService) {
         this.sidebarVisible = false;
     }
 
@@ -125,7 +126,7 @@ export class NavbarComponent implements OnInit {
 
     OktaLogout() {
         this.OktaAuthClient.OktaSDKAuthClient.signOut();
-        // document.getElementById("welcomeText").innerHTML = " "
+        this.cookieService.deleteAll();
     }
 }
 

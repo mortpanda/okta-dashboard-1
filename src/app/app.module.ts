@@ -41,8 +41,6 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { PortalComponent } from './portal/portal.component';
-import { PortalDisplaypageComponent } from './portal-displaypage/portal-displaypage.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { OktaAuthModule } from '@okta/okta-angular';
 import { WhoisoktaComponent } from './whoisokta/whoisokta.component';
@@ -58,11 +56,8 @@ import { DashboardDisplayPageComponent } from './dashboard-display-page/dashboar
 import { ChartsModule } from 'ng2-charts';
 import { ActiveusersComponent } from './activeusers/activeusers.component';
 import { InactiveusersComponent } from './inactiveusers/inactiveusers.component';
-import { ActivetotalComponent } from './activetotal/activetotal.component';
-
-
-
-
+import { UsertypeComponent } from 'app/usertype/usertype.component';
+import { ListgroupsComponent } from './listgroups/listgroups.component';
 
 
 @NgModule({
@@ -70,8 +65,6 @@ import { ActivetotalComponent } from './activetotal/activetotal.component';
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    PortalComponent,
-    PortalDisplaypageComponent,
     LoginPageComponent,
     WhoisoktaComponent,
     SdkLoginComponent,
@@ -81,7 +74,9 @@ import { ActivetotalComponent } from './activetotal/activetotal.component';
     DashboardDisplayPageComponent,
     ActiveusersComponent,
     InactiveusersComponent,
-    ActivetotalComponent,
+    UsertypeComponent,
+    ListgroupsComponent,
+    
     
     
     
@@ -125,7 +120,7 @@ import { ActivetotalComponent } from './activetotal/activetotal.component';
     MatSelectModule,
     ChartsModule,
   ],
-  providers: [OktaSDKAuthService,CookieService,ActiveusersComponent,InactiveusersComponent,ChartsModule,ActivetotalComponent], 
+  providers: [OktaSDKAuthService,CookieService,ActiveusersComponent,InactiveusersComponent,ChartsModule], 
   bootstrap: [AppComponent]
 })
 export class AppModule { }

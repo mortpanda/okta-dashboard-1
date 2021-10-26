@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
-//import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { OktaConfig } from "app/shared/okta/okta-config";
 import { OktaSDKAuthService } from 'app/shared/okta/okta-auth-service';
 import { CookieService } from 'ngx-cookie-service';
@@ -13,7 +12,6 @@ import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label, BaseChartDirective } from 'ng2-charts';
 import { Color } from 'ng2-charts';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import {ActivetotalComponent} from 'app/activetotal/activetotal.component';
 
 
 @Component({
@@ -25,8 +23,9 @@ import {ActivetotalComponent} from 'app/activetotal/activetotal.component';
 export class ActiveusersComponent implements OnInit {
 
   strAccessToken;
-  strAllUsersFilter = '/api/v1/users'
+  //strAllUsersFilter = '/api/v1/users'
   strURL;
+  strData;
 
   //Consumes License
   numActiveUsers;
@@ -69,7 +68,7 @@ export class ActiveusersComponent implements OnInit {
   public chart: BaseChartDirective;
 
   constructor(private OktaConfig: OktaConfig, private OktaAuthClient: OktaSDKAuthService, private cookieService: CookieService
-    ,private _snackBar: MatSnackBar, private ActivetotalComponent:ActivetotalComponent) { }
+    ,private _snackBar: MatSnackBar) { }
 
   updateChart() {
     //this.barChartData.push();
@@ -83,6 +82,7 @@ export class ActiveusersComponent implements OnInit {
   }
 
   async GetUsers() {
+    
     this.numTotalLicensedUsers='0';
     this._snackBar.open('Data Download in Progress');
     console.log(this.OktaConfig.strStagedUsersFilter);
@@ -135,7 +135,7 @@ export class ActiveusersComponent implements OnInit {
     //this.chart.chart.update();
     this.updateChart();
     this._snackBar.dismiss();
-    this.ActivetotalComponent.GetActiveToalFromCookie();
+    
   }
 
 
@@ -181,6 +181,7 @@ export class ActiveusersComponent implements OnInit {
 
         let data = await response.json();
         // Extract the url of the response's "next" relational Link header
+        
         let next_page;
         if (/<([^>]+)>; rel="next"/g.test(response.headers.get("link"))) {
           next_page = /<([^>]+)>; rel="next"/g.exec(response.headers.get("link"))[1];
@@ -189,65 +190,63 @@ export class ActiveusersComponent implements OnInit {
         // If another page exists, merge its output into the array recursively
         if (next_page) {
           data = data.concat(await fetchRequest(next_page));
+          
         }
         return data;
+        
       } catch (err) {
         return console.error(err);
       }
     }
     /////////////////////////////////////
-
+    
     /////////////////////////////////////
+    
     await fetchRequest(strUserCountURL).then(data =>
-      this.strUserArraySize = data.length
+      this.strUserArraySize = data.length      
     );
+    //console.log('users : ' + this.strData);
     /////////////////////////////////////
-
+    //this.strData = data;
     /////////////////////////////////////
     // Fill data in array depending on the URL
     switch (strUserCountURL) {
       case this.OktaConfig.strBaseURI + this.OktaConfig.strProvisionedUsersFilter:
         strUserType = "Provisioned Users : "
         this.cookieService.set('OktaProvisionedUsers', this.strUserArraySize);
-        // this.numTotalLicensedUsers = Number(this.numTotalLicensedUsers) + Number(this.strUserArraySize);
-        // this.cookieService.set('OktaTotalActiveUsers', this.numTotalLicensedUsers);
+        
         break;
       case this.OktaConfig.strBaseURI + this.OktaConfig.strActiveUserFilter:
 
         strUserType = "Active Users : "
         this.cookieService.set('OktaActiveUsers', this.strUserArraySize);
-        this.numTotalLicensedUsers = Number(this.numTotalLicensedUsers) + Number(this.strUserArraySize);
-        this.cookieService.set('OktaTotalActiveUsers', this.numTotalLicensedUsers);
+        
         break;
 
       case this.OktaConfig.strBaseURI + this.OktaConfig.strRecoveryUserFilter:
 
         strUserType = "Users in Recovery state : "
         this.cookieService.set('OktaRecoveryUsers', this.strUserArraySize);
-        this.numTotalLicensedUsers = Number(this.numTotalLicensedUsers) + Number(this.strUserArraySize);
-        this.cookieService.set('OktaTotalActiveUsers', this.numTotalLicensedUsers);
+        
         break;
       case this.OktaConfig.strBaseURI + this.OktaConfig.strPWExpiredFilter:
 
         strUserType = "Password Expired Users : "
         this.cookieService.set('OktaPWExpiredUsers', this.strUserArraySize);
-        this.numTotalLicensedUsers = Number(this.numTotalLicensedUsers) + Number(this.strUserArraySize);
-        this.cookieService.set('OktaTotalActiveUsers', this.numTotalLicensedUsers);
+        
         break;
       case this.OktaConfig.strBaseURI + this.OktaConfig.strLockedOutFilter:
 
         strUserType = "Locked out Users : "
         this.cookieService.set('OktaLockedoutUsers', this.strUserArraySize);
-        this.numTotalLicensedUsers = Number(this.numTotalLicensedUsers) + Number(this.strUserArraySize);
-        this.cookieService.set('OktaTotalActiveUsers', this.numTotalLicensedUsers);
+        
         break;
 
       case this.OktaConfig.strBaseURI + this.OktaConfig.strSuspendedFilter:
 
         strUserType = "Suspended Users : "
         this.cookieService.set('OktaSuspendedUsers', this.strUserArraySize);
-        this.numTotalLicensedUsers = Number(this.numTotalLicensedUsers) + Number(this.strUserArraySize);
-        this.cookieService.set('OktaTotalActiveUsers', this.numTotalLicensedUsers);
+        
         break;
     }
     await fetchRequest(strUserCountURL);

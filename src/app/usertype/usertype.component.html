@@ -1,0 +1,11 @@
+<h2>Authentication Provider</h2>
+<div>
+    <canvas baseChart [datasets]="pieChartData" [labels]="pieChartLabels" [options]="pieChartOptions"
+        [plugins]="pieChartPlugins" [legend]="pieChartLegend" [chartType]="pieChartType" [colors]="pieChartColor">
+    </canvas>
+</div>
+<br>
+<div>
+    <br>
+    <a class="btn btn-danger btn-round config userTypes" id="usertype" (click)="GetUserTypes()">Get Active Users</a>
+</div>

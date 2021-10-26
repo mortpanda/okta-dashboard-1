@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ActivetotalComponent } from './activetotal.component';
+import { UsertypeComponent } from './usertype.component';
 
-describe('ActivetotalComponent', () => {
-  let component: ActivetotalComponent;
-  let fixture: ComponentFixture<ActivetotalComponent>;
+describe('UsertypeComponent', () => {
+  let component: UsertypeComponent;
+  let fixture: ComponentFixture<UsertypeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ActivetotalComponent ]
+      declarations: [ UsertypeComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ActivetotalComponent);
+    fixture = TestBed.createComponent(UsertypeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
