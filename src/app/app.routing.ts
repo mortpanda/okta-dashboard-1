@@ -1,7 +1,7 @@
 import { CommonModule, } from '@angular/common';
 import { BrowserModule  } from '@angular/platform-browser';
-import { PortalComponent } from 'app/portal/portal.component';
-import { PortalDisplaypageComponent }from 'app/portal-displaypage/portal-displaypage.component';
+//import { PortalComponent } from 'app/portal/portal.component';
+//import { PortalDisplaypageComponent }from 'app/portal-displaypage/portal-displaypage.component';
 import { OktaAuthGuard, OktaAuthService, OktaCallbackComponent } from '@okta/okta-angular';
 import { Router, RouterModule, Routes } from '@angular/router';
 import { Injector, NgModule } from '@angular/core';
