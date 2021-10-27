@@ -1,6 +1,13 @@
+.groupmemberTitle{
+    padding: 5px!important;
+}
 .mat-elevation-z8 {
-    width: 100%;
+    width: 98%;
+    
     box-shadow: none!important;
+    padding: 15px!important;
+    /* padding-right: 25px!important; */
+    /* background-color: transparent; */
 }
 
 .listGroups {
@@ -29,6 +36,10 @@ tr.mat-row, tr.mat-footer-row {
     height: 20px!important;
 }
 
-tr.mat-header-row {
-    height: 20px!important;
+.GroupStats{
+    text-align: left!important;
 }
+
+/* tr.mat-header-row {
+    height: 20px!important;
+} */

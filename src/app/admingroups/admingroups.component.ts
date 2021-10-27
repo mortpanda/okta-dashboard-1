@@ -12,30 +12,27 @@ import { Label, BaseChartDirective } from 'ng2-charts';
 import { Color } from 'ng2-charts';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-
 @Component({
-  selector: 'app-listgroups',
-  templateUrl: './listgroups.component.html',
-  styleUrls: ['./listgroups.component.css'],
-  encapsulation: ViewEncapsulation.None
+  selector: 'app-admingroups',
+  templateUrl: './admingroups.component.html',
+  styleUrls: ['./admingroups.component.css']
 })
-export class ListgroupsComponent implements OnInit {
+export class AdmingroupsComponent implements OnInit {
 
   strAccessToken;
   strURL;
   strData;
-  countOkta;
-  countWindows;
+  countAdminGroup;
+  countNONEAdminGroup
   strUserArraySize;
   arrGroupJson: any = {};
-
   // //// Active User Chart Options
-  public barChartColor3: any[] = [
+  public barChartColor4: any[] = [
     {
       backgroundColor: ["#00297A", "#3C2B57", "#095661", "#CC8A00", "#EC3629"]
     }
   ];
-  public barChartOptions3: ChartOptions = {
+  public barChartOptions4: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
     scales: {
@@ -48,12 +45,12 @@ export class ListgroupsComponent implements OnInit {
       }]
     }
   };
-  public barChartLabels3: Label[] = ['Okta Groups', 'Windows Groups'];
-  public barChartType3: ChartType = 'bar';
-  public barChartLegend3 = false;
-  public barChartPlugins3 = [];
-  public barChartData3: ChartDataSets[] = [
-    { data: [0, 0, 0, 0, 0], label: 'Users' }
+  public barChartLabels4: Label[] = ['Admin = True', 'Admin = False'];
+  public barChartType4: ChartType = 'bar';
+  public barChartLegend4 = false;
+  public barChartPlugins4 = [];
+  public barChartData4: ChartDataSets[] = [
+    { data: [0, 0], label: 'Groups' }
   ];
 
   @ViewChild(BaseChartDirective)
@@ -122,47 +119,48 @@ export class ListgroupsComponent implements OnInit {
     // Work on the data
     /////////////////////////////////////
     await fetchRequest(strUserCountURL).then(data => {
-      var aggregatedData = [];
+      var aggregatedAdminGroupData = [];
 
-      this.countOkta = 0;
-      this.countWindows = 0;
-      aggregatedData = aggregatedData.concat(data)
-      for (var i = 0; i < aggregatedData.length; i++) {
+      this.countAdminGroup = 0;
+      this.countNONEAdminGroup = 0;
+      aggregatedAdminGroupData = aggregatedAdminGroupData.concat(data)
+      for (var i = 0; i < aggregatedAdminGroupData.length; i++) {
         //console.log(aggregatedData[i].objectClass[0])
         //this.arrGroupJson = aggregatedData[i].id;
         // this.arrGroupJson[i] = aggregatedData[i].profile.name;
         // this.arrGroupJson[i] = aggregatedData[i].objectClass[0];
         //const groupID = aggregatedData[i].id;
         this.arrGroupJson[i] = {
-          id: aggregatedData[i].id,
-          name: aggregatedData[i].profile.name,
-          objectClass: aggregatedData[i].objectClass[0],
-          user: aggregatedData[i]._links.users
+          id: aggregatedAdminGroupData[i].id,
+          name: aggregatedAdminGroupData[i].profile.name,
+          objectClass: aggregatedAdminGroupData[i].objectClass[0],
+          user: aggregatedAdminGroupData[i]._links.users
         };
 
+          //[1]._embedded.stats.hasAdminPrivilege
 
         //this.arrGroupJson.push({id: + aggregatedData[i].id});
 
-        switch (aggregatedData[i].objectClass[0].toLowerCase()) {
-          case "okta:windows_security_principal":
-            this.countWindows = Number(this.countWindows) + 1
+        switch (aggregatedAdminGroupData[i]._embedded.stats.hasAdminPrivilege) {
+          case true:
+            this.countAdminGroup = Number(this.countAdminGroup) + 1
             break;
-          case "okta:user_group":
-            this.countOkta = Number(this.countOkta) + 1
+          case false:
+            this.countNONEAdminGroup = Number(this.countNONEAdminGroup) + 1
             break;
         }
 
 
       }
-      console.log('Okta Groups : ' + this.countOkta);
-      console.log('Windows Groups : ' + this.countWindows);
-      console.log(aggregatedData);
+      console.log('Groups with Admin : ' + this.countAdminGroup);
+      console.log('Groups WITHOUT Admin : ' + this.countNONEAdminGroup);
+      console.log(aggregatedAdminGroupData);
       this.strUserArraySize = data.length;
     }
     );
 
-    this.barChartData3[0].data[0] = Number(this.countOkta);
-    this.barChartData3[0].data[1] = Number(this.countWindows);
+    this.barChartData4[0].data[0] = Number(this.countAdminGroup);
+    this.barChartData4[0].data[1] = Number(this.countNONEAdminGroup);
     // Output from the get group function
     console.log(this.arrGroupJson);
     

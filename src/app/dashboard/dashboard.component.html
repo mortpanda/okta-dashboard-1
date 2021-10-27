@@ -1,24 +1,19 @@
 <mat-tab-group class="tabGroup">
     <mat-tab label="Groups">
-        <div class="fxcontainer" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px">
+        <div class="fxcontainer" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="5px">
 
-            <div class="item item1 UserCount" id="ListGroups">
+            <div class="item item1 UserCount GroupType" id="ListGroups">
                 <app-listgroups></app-listgroups>
 
             </div>
 
+            <div class="item item1 adminGroup" id="Admin">
+                <app-admingroups></app-admingroups>
 
-            <div class="item item1 UserCount" id="memberCount">
-                <app-listgroupmembercount></app-listgroupmembercount>
             </div>
 
-            <div class="item item1" id="memberProfile">
-                <a mat-button href="https://mortpanda.github.io/ciam-angular-portal-profile/home" target="_blank"
-                    class="btn_profile">
-                    User Information<br>
-                    {{strTestStuff}}
-                </a>
-
+            <div class="item item1 GroupStats" id="memberCount">
+                <app-listgroupmembercount></app-listgroupmembercount>
             </div>
         </div>
 
@@ -29,7 +24,7 @@
             target="_blank">
             Click here for more details on user status</a>
 
-        <div class="fxcontainer" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px">
+        <div class="fxcontainer" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="5px">
 
             <div class="item item1 UserCount" id="activeUser">
                 <app-activeusers></app-activeusers>

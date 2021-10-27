@@ -120,7 +120,7 @@ export class UsertypeComponent implements OnInit {
     /////////////////////////////////////
     /////////////////////////////////////
     await fetchRequest(strUserCountURL).then(data => {
-      var aggregatedData = [];
+      var aggregatedUserData = [];
       //var ADcount;
       this.countAD = 0;
       this.countOkta = 0;
@@ -128,11 +128,11 @@ export class UsertypeComponent implements OnInit {
       // this.countSocial = 0;
       // this.countImport = 0;
       this.countOthers = 0;
-      aggregatedData = aggregatedData.concat(data)
-      for (var i = 0; i < aggregatedData.length; i++) {
+      aggregatedUserData = aggregatedUserData.concat(data)
+      for (var i = 0; i < aggregatedUserData.length; i++) {
         //console.log(aggregatedData[i].credentials.provider.type)
         var UserType;
-        UserType = aggregatedData[i].credentials.provider.type.toString();
+        UserType = aggregatedUserData[i].credentials.provider.type.toString();
         //console.log(UserType);
         switch (UserType) {
           case "ACTIVE_DIRECTORY":
@@ -161,7 +161,7 @@ export class UsertypeComponent implements OnInit {
       console.log('Others : ' + this.countOthers);
       //console.log('Social users : ' + this.countSocial);
       //console.log('Imported users : ' + this.countImport);
-      console.log(aggregatedData);
+      console.log(aggregatedUserData);
       this.strUserArraySize = data.length;
     }
     );
@@ -172,6 +172,6 @@ export class UsertypeComponent implements OnInit {
     // this.pieChartData[0].data[4] = Number(this.countImport);
 
     await fetchRequest(strUserCountURL);
-    console.log(strUserType + this.strUserArraySize);
+    //console.log(strUserType + this.strUserArraySize);
   }
 }

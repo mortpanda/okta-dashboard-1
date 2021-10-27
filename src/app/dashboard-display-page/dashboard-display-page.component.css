@@ -17,5 +17,7 @@
     display: inline-flex!important;
     z-index: 2!important;
     margin-bottom: 80px!important;
+    min-width: 1380px!important;
+    min-height: 516px!important;
     
 }

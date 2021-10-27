@@ -59,6 +59,7 @@ import { InactiveusersComponent } from './inactiveusers/inactiveusers.component'
 import { UsertypeComponent } from 'app/usertype/usertype.component';
 import { ListgroupsComponent } from './listgroups/listgroups.component';
 import { ListgroupmembercountComponent } from './listgroupmembercount/listgroupmembercount.component';
+import { AdmingroupsComponent } from './admingroups/admingroups.component';
 
 
 
@@ -79,6 +80,7 @@ import { ListgroupmembercountComponent } from './listgroupmembercount/listgroupm
     UsertypeComponent,
     ListgroupsComponent,
     ListgroupmembercountComponent,
+    AdmingroupsComponent,
      
     
     

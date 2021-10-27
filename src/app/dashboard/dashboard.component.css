@@ -1,4 +1,16 @@
+.adminGroup,.GroupType{
+    max-width: 300px!important;
+    max-height: 330px!important;
+    min-width: 300px!important;
+    min-height: 330px!important;
+}
 
+.GroupStats{
+    max-width: 590px!important;
+    max-height: 330px!important;
+    min-width: 590px!important;
+    min-height: 330px!important;
+ }
 .userDetailed{
     padding: 10px!important;
     /* margin:  10px!important; */
@@ -41,6 +53,8 @@ align-content: center!important;
     width:100%;
     height:60px; 
  }
+
+ 
 
 .item{
     background-color: #D7D7DC!important;

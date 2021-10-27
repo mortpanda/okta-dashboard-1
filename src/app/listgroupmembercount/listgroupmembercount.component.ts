@@ -19,10 +19,13 @@ export interface PeriodicElement {
   Name: string;
   Members: number;
   Type: string;
+  Admin: Boolean;
+  Apps: number;
+  Pushgroups: number;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { Name: "a", Members: 0, Type: "a" },
+var ELEMENT_DATA: PeriodicElement[] = [
+  { Name: "a", Admin: false, Members: 0, Apps: 0, Pushgroups: 0, Type: "a" },
 
 ];
 
@@ -36,17 +39,14 @@ export class ListgroupmembercountComponent implements OnInit {
   strAccessToken;
   strURL;
   strData;
-  countOkta;
+  countOktaGroup;
   countWindows;
   strUserArraySize;
   arrGroupJson: any = {};
   intArrayLength;
   GroupList;
 
-  displayedColumns: string[] = ['Name', 'Members', 'Type'];
-  //dataSource = ELEMENT_DATA;
-
-
+  displayedColumns: string[] = ['Name', 'Admin', 'Members', 'Apps', 'Pushgroups', 'Type'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -70,6 +70,9 @@ export class ListgroupmembercountComponent implements OnInit {
   }
 
   async FunctionGetUserCount(strUserCountURL, myToken) {
+    ELEMENT_DATA = [];
+    this.dataSource.data = ELEMENT_DATA;
+
     localStorage.removeItem('okta_groups');
     var strUserType;
     console.log('Calling... : ' + strUserCountURL);
@@ -106,7 +109,7 @@ export class ListgroupmembercountComponent implements OnInit {
     await fetchRequest(strUserCountURL).then(data => {
       var aggregatedData = [];
       this.intArrayLength = 0;
-      this.countOkta = 0;
+      this.countOktaGroup = 0;
       this.countWindows = 0;
       aggregatedData = aggregatedData.concat(data)
       for (var i = 0; i < aggregatedData.length; i++) {
@@ -115,19 +118,24 @@ export class ListgroupmembercountComponent implements OnInit {
           id: aggregatedData[i].id,
           name: aggregatedData[i].profile.name,
           objectClass: aggregatedData[i].objectClass[0],
-          user: aggregatedData[i]._links.users
+          //user: aggregatedData[i]._links.users,
+          memberCount: aggregatedData[i]._embedded.stats.usersCount,
+          assignedAppsCount: aggregatedData[i]._embedded.stats.appsCount,
+          adminGroup: aggregatedData[i]._embedded.stats.hasAdminPrivilege,
+          groupPush: aggregatedData[i]._embedded.stats.groupPushMappingsCount,
         };
+
         //this.arrGroupJson.push({id: + aggregatedData[i].id});
         switch (aggregatedData[i].objectClass[0].toLowerCase()) {
           case "okta:windows_security_principal":
             this.countWindows = Number(this.countWindows) + 1
             break;
           case "okta:user_group":
-            this.countOkta = Number(this.countOkta) + 1
+            this.countOktaGroup = Number(this.countOktaGroup) + 1
             break;
         }
       }
-      console.log('Okta Groups : ' + this.countOkta);
+      console.log('Okta Groups : ' + this.countOktaGroup);
       console.log('Windows Groups : ' + this.countWindows);
       console.log(aggregatedData);
     }
@@ -141,45 +149,42 @@ export class ListgroupmembercountComponent implements OnInit {
     localStorage.setItem('okta_groups', oktagroups);
     await fetchRequest(strUserCountURL);
 
-
+    this.FunctionFillTable();
 
   }
 
 
   FunctionFillTable() {
     console.log('Starting filling in the table using the information on the local storage');
-
     this.GroupList = JSON.parse(localStorage.getItem('okta_groups'));
     console.log(this.GroupList);
     for (var i = 0; i < this.GroupList.length; i++) {
-
-
-
       //Rename group type to more readable form
       var groupType = "";
       switch (this.GroupList[i].objectClass.toLowerCase()) {
         case "okta:user_group":
-          groupType = "Okta group"  
-        break;
+          groupType = "Okta group"
+          break;
 
         case "okta:windows_security_principal":
-          groupType = "AD group"    
-        break;
+          groupType = "AD group"
+          break;
         default:
-          groupType = "Others"    
+          groupType = "Others"
           break;
 
       }
       ELEMENT_DATA[i] = {
         Name: this.GroupList[i].name,
-        Members: 0,
+        Admin: this.GroupList[i].adminGroup,
+        Members: this.GroupList[i].memberCount,
+        Apps: this.GroupList[i].assignedAppsCount,
+        Pushgroups: this.GroupList[i].groupPush,
         Type: groupType,
+
       }
     }
     this.dataSource.data = ELEMENT_DATA;
   }
 
 }
-
-// okta:windows_security_principal
-// okta:user_group
