@@ -1,4 +1,29 @@
 <mat-tab-group class="tabGroup">
+    <mat-tab label="Apps">
+        
+            <a class="btn btn-danger btn-round config GetApps" id="GetApps" (click)="GetApps()">Fetch App Data</a> 
+
+        <div class="fxcontainer" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="5px">
+            
+            <div class="item item1 appList" id="appList">
+                <app-appstatus></app-appstatus>                
+
+            </div>
+
+            <div class="item item1 appList" id="Admin">
+                
+
+            </div>
+
+            <div class="item item1 appList" id="memberCount">
+                
+            </div>
+            
+        </div>
+
+
+    </mat-tab>
+
     <mat-tab label="Groups">
         <div class="fxcontainer" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="5px">
 
@@ -40,11 +65,7 @@
 
     </mat-tab>
 
-    <mat-tab label="Apps"> Content 3
-
-
-
-    </mat-tab>
+    
 
 
 

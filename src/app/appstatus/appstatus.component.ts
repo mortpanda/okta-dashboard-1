@@ -11,30 +11,33 @@ import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label, BaseChartDirective } from 'ng2-charts';
 import { Color } from 'ng2-charts';
 import { MatSnackBar } from '@angular/material/snack-bar';
-// import { MatTableModule } from '@angular/material/table';
-// import { MatTableDataSource } from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
+
+
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
+  selector: 'app-appstatus',
+  templateUrl: './appstatus.component.html',
+  styleUrls: ['./appstatus.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class DashboardComponent implements OnInit {
+export class AppstatusComponent implements OnInit {
 
-  // strAccessToken;
-  // strIDToken;
   strAccessToken;
   strURL;
   arrAppsJson: any = {};
+  // intAppArrayLength;
+
 
   constructor(private OktaConfig: OktaConfig, private OktaAuthClient: OktaSDKAuthService, private cookieService: CookieService
     , private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    
-   }
-   async GetApps() {
+  }
+
+
+  async GetApps() {
     
     this._snackBar.open('Data Download in Progress');
     localStorage.removeItem('okta_apps');
@@ -46,11 +49,7 @@ export class DashboardComponent implements OnInit {
     await UpdateAppsCharts();
     this._snackBar.dismiss();
 
-    this._snackBar.open('Data download completed','Close');
-    
   }
-
-  
 
   async FunctionGetApps(strUserCountURL, myToken) {
     // ELEMENT_DATA = [];

@@ -57,7 +57,7 @@ export class AuthService {
     var oktaSignIn = new OktaSignIn({
       clientId: OktaClientID,
       baseUrl: OktaBaseURI,
-      language: 'ja',
+      language: 'en',
       redirectUri: OktaRedirect,
       colors: {
         brand: OktaBrand,

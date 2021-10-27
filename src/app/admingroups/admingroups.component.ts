@@ -29,25 +29,27 @@ export class AdmingroupsComponent implements OnInit {
   // //// Active User Chart Options
   public barChartColor4: any[] = [
     {
-      backgroundColor: ["#00297A", "#3C2B57", "#095661", "#CC8A00", "#EC3629"]
+      //backgroundColor: ["#00297A", "#3C2B57", "#095661", "#CC8A00", "#EC3629"]
+      backgroundColor: ["#CC8A00", "#095661"]
     }
   ];
   public barChartOptions4: ChartOptions = {
     responsive: true,
+    legend: { position: 'bottom' },
     maintainAspectRatio: false,
-    scales: {
-      xAxes: [{
-        ticks: {
-          min: 0,
-          stepSize: 1,
-          beginAtZero: true
-        }
-      }]
-    }
+    // scales: {
+    //   xAxes: [{
+    //     ticks: {
+    //       min: 0,
+    //       stepSize: 1,
+    //       beginAtZero: true
+    //     }
+    //   }]
+    // }
   };
-  public barChartLabels4: Label[] = ['Admin = True', 'Admin = False'];
-  public barChartType4: ChartType = 'bar';
-  public barChartLegend4 = false;
+  public barChartLabels4: Label[] = ['Admin=True', 'Admin=False'];
+  public barChartType4: ChartType = 'pie';
+  public barChartLegend4 = true;
   public barChartPlugins4 = [];
   public barChartData4: ChartDataSets[] = [
     { data: [0, 0], label: 'Groups' }
@@ -63,14 +65,11 @@ export class AdmingroupsComponent implements OnInit {
     this.chart3.update();
   }
 
-
   async ngOnInit() {
-  
+
   }
 
-
-  async GetGroups() {
-
+  async GetAdminGroups() {
     this._snackBar.open('Data Download in Progress');
     this.strAccessToken = this.OktaAuthClient.OktaSDKAuthClient.getAccessToken();
     console.log(this.strAccessToken);
@@ -125,22 +124,12 @@ export class AdmingroupsComponent implements OnInit {
       this.countNONEAdminGroup = 0;
       aggregatedAdminGroupData = aggregatedAdminGroupData.concat(data)
       for (var i = 0; i < aggregatedAdminGroupData.length; i++) {
-        //console.log(aggregatedData[i].objectClass[0])
-        //this.arrGroupJson = aggregatedData[i].id;
-        // this.arrGroupJson[i] = aggregatedData[i].profile.name;
-        // this.arrGroupJson[i] = aggregatedData[i].objectClass[0];
-        //const groupID = aggregatedData[i].id;
         this.arrGroupJson[i] = {
           id: aggregatedAdminGroupData[i].id,
           name: aggregatedAdminGroupData[i].profile.name,
           objectClass: aggregatedAdminGroupData[i].objectClass[0],
           user: aggregatedAdminGroupData[i]._links.users
         };
-
-          //[1]._embedded.stats.hasAdminPrivilege
-
-        //this.arrGroupJson.push({id: + aggregatedData[i].id});
-
         switch (aggregatedAdminGroupData[i]._embedded.stats.hasAdminPrivilege) {
           case true:
             this.countAdminGroup = Number(this.countAdminGroup) + 1
@@ -149,8 +138,6 @@ export class AdmingroupsComponent implements OnInit {
             this.countNONEAdminGroup = Number(this.countNONEAdminGroup) + 1
             break;
         }
-
-
       }
       console.log('Groups with Admin : ' + this.countAdminGroup);
       console.log('Groups WITHOUT Admin : ' + this.countNONEAdminGroup);
@@ -158,27 +145,12 @@ export class AdmingroupsComponent implements OnInit {
       this.strUserArraySize = data.length;
     }
     );
-
     this.barChartData4[0].data[0] = Number(this.countAdminGroup);
     this.barChartData4[0].data[1] = Number(this.countNONEAdminGroup);
     // Output from the get group function
     console.log(this.arrGroupJson);
-    
-    // const myDate = new Date();
-    // myDate.setHours(myDate.getHours() + 1);
-
-    // Convert groups into string to prepare for localstorate
-    //const oktagroups = JSON.stringify(this.arrGroupJson);
-    
-    //Save to local storate
-    //localStorage.setItem('okta_groups',oktagroups);
-    
-    //const localstoragetest = localStorage.getItem('okta_groups');
-    //console.log(JSON.parse(localstoragetest));
-
-    //console.log(this.arrGroupJson[0].id);
     await fetchRequest(strUserCountURL);
-    //console.log(strUserType + this.strUserArraySize);
+    
   }
 
 }

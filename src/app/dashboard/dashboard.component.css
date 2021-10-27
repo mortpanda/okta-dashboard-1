@@ -1,3 +1,6 @@
+.GetApps{
+    margin: 10px!important;
+}
 .adminGroup,.GroupType{
     max-width: 300px!important;
     max-height: 330px!important;

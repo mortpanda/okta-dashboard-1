@@ -86,7 +86,7 @@ export class ActiveusersComponent implements OnInit {
     
     this.numTotalLicensedUsers='0';
     this._snackBar.open('Data Download in Progress');
-    console.log(this.OktaConfig.strStagedUsersFilter);
+    //console.log(this.OktaConfig.strStagedUsersFilter);
     this.strURL = this.OktaConfig.strBaseURI + this.OktaConfig.strRecoveryUserFilter;
     this.strAccessToken = this.OktaAuthClient.OktaSDKAuthClient.getAccessToken();
     console.log(this.strAccessToken);

@@ -60,6 +60,7 @@ import { UsertypeComponent } from 'app/usertype/usertype.component';
 import { ListgroupsComponent } from './listgroups/listgroups.component';
 import { ListgroupmembercountComponent } from './listgroupmembercount/listgroupmembercount.component';
 import { AdmingroupsComponent } from './admingroups/admingroups.component';
+import { AppstatusComponent } from './appstatus/appstatus.component';
 
 
 
@@ -81,6 +82,7 @@ import { AdmingroupsComponent } from './admingroups/admingroups.component';
     ListgroupsComponent,
     ListgroupmembercountComponent,
     AdmingroupsComponent,
+    AppstatusComponent,
      
     
     
@@ -128,6 +130,7 @@ import { AdmingroupsComponent } from './admingroups/admingroups.component';
     ActiveusersComponent,
     InactiveusersComponent,
     ChartsModule,
+    AppstatusComponent,
     ], 
 
 
