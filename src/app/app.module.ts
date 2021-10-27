@@ -58,6 +58,8 @@ import { ActiveusersComponent } from './activeusers/activeusers.component';
 import { InactiveusersComponent } from './inactiveusers/inactiveusers.component';
 import { UsertypeComponent } from 'app/usertype/usertype.component';
 import { ListgroupsComponent } from './listgroups/listgroups.component';
+import { ListgroupmembercountComponent } from './listgroupmembercount/listgroupmembercount.component';
+
 
 
 @NgModule({
@@ -76,10 +78,8 @@ import { ListgroupsComponent } from './listgroups/listgroups.component';
     InactiveusersComponent,
     UsertypeComponent,
     ListgroupsComponent,
-    
-    
-    
-    
+    ListgroupmembercountComponent,
+     
     
     
   ],
@@ -120,7 +120,15 @@ import { ListgroupsComponent } from './listgroups/listgroups.component';
     MatSelectModule,
     ChartsModule,
   ],
-  providers: [OktaSDKAuthService,CookieService,ActiveusersComponent,InactiveusersComponent,ChartsModule], 
+  providers: [
+    OktaSDKAuthService,
+    CookieService,
+    ActiveusersComponent,
+    InactiveusersComponent,
+    ChartsModule,
+    ], 
+
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -11,73 +11,53 @@ import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label, BaseChartDirective } from 'ng2-charts';
 import { Color } from 'ng2-charts';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 
+export interface PeriodicElement {
+  // position: number;
+  Name: string;
+  Members: number;
+  Type: string;
+}
+
+const ELEMENT_DATA: PeriodicElement[] = [
+  { Name: "a", Members: 0, Type: "a" },
+
+];
 
 @Component({
-  selector: 'app-listgroups',
-  templateUrl: './listgroups.component.html',
-  styleUrls: ['./listgroups.component.css'],
+  selector: 'app-listgroupmembercount',
+  templateUrl: './listgroupmembercount.component.html',
+  styleUrls: ['./listgroupmembercount.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class ListgroupsComponent implements OnInit {
-
+export class ListgroupmembercountComponent implements OnInit {
   strAccessToken;
   strURL;
   strData;
-
   countOkta;
   countWindows;
-  dynHeight;
-
   strUserArraySize;
-
   arrGroupJson: any = {};
+  intArrayLength;
+  GroupList;
 
-  // //// Active User Chart Options
-  public barChartColor3: any[] = [
-    {
-      backgroundColor: ["#00297A", "#3C2B57", "#095661", "#CC8A00", "#EC3629"]
-    }
-  ];
-  public barChartOptions3: ChartOptions = {
-    responsive: true,
-    maintainAspectRatio: true,
-    scales: {
-      xAxes: [{
-        ticks: {
-          min: 0,
-          stepSize: 1,
-          beginAtZero: true
-        }
-      }]
-    }
-  };
-  public barChartLabels3: Label[] = ['Okta Groups', 'Windows Groups'];
-  public barChartType3: ChartType = 'bar';
-  public barChartLegend3 = false;
-  public barChartPlugins3 = [];
-  public barChartData3: ChartDataSets[] = [
-    { data: [0, 0, 0, 0, 0], label: 'Users' }
-  ];
+  displayedColumns: string[] = ['Name', 'Members', 'Type'];
+  //dataSource = ELEMENT_DATA;
 
-  @ViewChild(BaseChartDirective)
-  public chart3: BaseChartDirective;
 
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
   constructor(private OktaConfig: OktaConfig, private OktaAuthClient: OktaSDKAuthService, private cookieService: CookieService
     , private _snackBar: MatSnackBar) { }
 
-  updateChart() {
-    this.chart3.update();
-  }
-
-
   async ngOnInit() {
-  this.dynHeight = "4000px";
   }
-
-
-  async GetGroups() {
-
+  async GetGroupMembers() {
     this._snackBar.open('Data Download in Progress');
     this.strAccessToken = this.OktaAuthClient.OktaSDKAuthClient.getAccessToken();
     console.log(this.strAccessToken);
@@ -85,14 +65,12 @@ export class ListgroupsComponent implements OnInit {
       const strResult = await this.FunctionGetUserCount(this.OktaConfig.strBaseURI + this.OktaConfig.strAllGroupsFilter, this.strAccessToken)
     }
     await UpdateAllGroupsCharts();
-    this.updateChart();
     this._snackBar.dismiss();
 
   }
 
   async FunctionGetUserCount(strUserCountURL, myToken) {
-
-    //this.numActiveUsers = '';
+    localStorage.removeItem('okta_groups');
     var strUserType;
     console.log('Calling... : ' + strUserCountURL);
     /////////////////////////////////////
@@ -127,26 +105,19 @@ export class ListgroupsComponent implements OnInit {
     /////////////////////////////////////
     await fetchRequest(strUserCountURL).then(data => {
       var aggregatedData = [];
-
+      this.intArrayLength = 0;
       this.countOkta = 0;
       this.countWindows = 0;
       aggregatedData = aggregatedData.concat(data)
       for (var i = 0; i < aggregatedData.length; i++) {
-        //console.log(aggregatedData[i].objectClass[0])
-        //this.arrGroupJson = aggregatedData[i].id;
-        // this.arrGroupJson[i] = aggregatedData[i].profile.name;
-        // this.arrGroupJson[i] = aggregatedData[i].objectClass[0];
-        //const groupID = aggregatedData[i].id;
+        this.intArrayLength = Number(this.intArrayLength) + 1;
         this.arrGroupJson[i] = {
           id: aggregatedData[i].id,
           name: aggregatedData[i].profile.name,
           objectClass: aggregatedData[i].objectClass[0],
           user: aggregatedData[i]._links.users
         };
-
-
         //this.arrGroupJson.push({id: + aggregatedData[i].id});
-
         switch (aggregatedData[i].objectClass[0].toLowerCase()) {
           case "okta:windows_security_principal":
             this.countWindows = Number(this.countWindows) + 1
@@ -155,36 +126,60 @@ export class ListgroupsComponent implements OnInit {
             this.countOkta = Number(this.countOkta) + 1
             break;
         }
-
-
       }
       console.log('Okta Groups : ' + this.countOkta);
       console.log('Windows Groups : ' + this.countWindows);
       console.log(aggregatedData);
-      this.strUserArraySize = data.length;
     }
     );
-
-    this.barChartData3[0].data[0] = Number(this.countOkta);
-    this.barChartData3[0].data[1] = Number(this.countWindows);
     // Output from the get group function
+    this.arrGroupJson.length = Number(this.intArrayLength);
     console.log(this.arrGroupJson);
-    
-    // const myDate = new Date();
-    // myDate.setHours(myDate.getHours() + 1);
-
     // Convert groups into string to prepare for localstorate
-    //const oktagroups = JSON.stringify(this.arrGroupJson);
-    
+    const oktagroups = JSON.stringify(this.arrGroupJson);
     //Save to local storate
-    //localStorage.setItem('okta_groups',oktagroups);
-    
-    //const localstoragetest = localStorage.getItem('okta_groups');
-    //console.log(JSON.parse(localstoragetest));
-
-    //console.log(this.arrGroupJson[0].id);
+    localStorage.setItem('okta_groups', oktagroups);
     await fetchRequest(strUserCountURL);
-    //console.log(strUserType + this.strUserArraySize);
+
+
+
+  }
+
+
+  FunctionFillTable() {
+    console.log('Starting filling in the table using the information on the local storage');
+
+    this.GroupList = JSON.parse(localStorage.getItem('okta_groups'));
+    console.log(this.GroupList);
+    for (var i = 0; i < this.GroupList.length; i++) {
+
+
+
+      //Rename group type to more readable form
+      var groupType = "";
+      switch (this.GroupList[i].objectClass.toLowerCase()) {
+        case "okta:user_group":
+          groupType = "Okta group"  
+        break;
+
+        case "okta:windows_security_principal":
+          groupType = "AD group"    
+        break;
+        default:
+          groupType = "Others"    
+          break;
+
+      }
+      ELEMENT_DATA[i] = {
+        Name: this.GroupList[i].name,
+        Members: 0,
+        Type: groupType,
+      }
+    }
+    this.dataSource.data = ELEMENT_DATA;
   }
 
 }
+
+// okta:windows_security_principal
+// okta:user_group

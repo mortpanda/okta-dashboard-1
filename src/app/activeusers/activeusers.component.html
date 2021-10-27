@@ -1,7 +1,9 @@
 <h2>License Consumption</h2>
 <div>
+    
     <canvas baseChart  [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
-        [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType" [colors]="barChartColor">
+        [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType" [colors]="barChartColor" >
     </canvas>
 </div>
+<br>
 <a class="btn btn-danger btn-round config activeUsers" id="UserInfo_btn" (click)="GetUsers()">Get Active Users</a>

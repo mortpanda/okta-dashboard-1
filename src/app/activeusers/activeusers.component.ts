@@ -46,6 +46,7 @@ export class ActiveusersComponent implements OnInit {
   ];
   public barChartOptions: ChartOptions = {
     responsive: true,
+    maintainAspectRatio: true,
     scales: {
       xAxes: [{
         ticks: {

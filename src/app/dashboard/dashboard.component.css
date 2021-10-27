@@ -13,7 +13,7 @@
     text-align: center!important;
     margin: 10px !important;
     align-content: center!important;
-    justify-content: center!important;
+    
 }
 
 
@@ -45,7 +45,9 @@ align-content: center!important;
 .item{
     background-color: #D7D7DC!important;
     min-width: 400px;
-    min-height: 300px;
+    min-height: 330px;
+    max-width: 400px;
+    max-height: 330px;
     margin: 15px!important;
     font-size: 12px;
     text-align: center;
@@ -97,7 +99,7 @@ align-content: center!important;
     
 }
 
-btn{
+.btn{
     border-radius: 5px!important;
   }
 
