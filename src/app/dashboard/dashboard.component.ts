@@ -3,7 +3,7 @@ import { ViewEncapsulation } from '@angular/core';
 import { OktaConfig } from "app/shared/okta/okta-config";
 import { OktaSDKAuthService } from 'app/shared/okta/okta-auth-service';
 import { CookieService } from 'ngx-cookie-service';
-
+import {OktaApiEndpoints} from 'app/shared/okta/okta-api-endpoints'
 // Needs to be the below versions
 //npm install ng2-charts@2.3.0 --save
 // npm i chart.js@2.9.0
@@ -13,6 +13,8 @@ import { Color } from 'ng2-charts';
 import { MatSnackBar } from '@angular/material/snack-bar';
 // import { MatTableModule } from '@angular/material/table';
 // import { MatTableDataSource } from '@angular/material/table';
+import { OktaChecktokenService } from 'app/shared/okta/okta-checktoken.service';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -29,10 +31,10 @@ export class DashboardComponent implements OnInit {
   arrAppsJson: any = {};
 
   constructor(private OktaConfig: OktaConfig, private OktaAuthClient: OktaSDKAuthService, private cookieService: CookieService
-    , private _snackBar: MatSnackBar) { }
+    , private _snackBar: MatSnackBar,private OktaApiEndpoints: OktaApiEndpoints, private OktaChecktokenService: OktaChecktokenService) { }
 
   ngOnInit(): void {
-    
+   this.OktaChecktokenService.functionCheckToken(); 
    }
    async GetApps() {
     
@@ -41,7 +43,7 @@ export class DashboardComponent implements OnInit {
     this.strAccessToken = this.OktaAuthClient.OktaSDKAuthClient.getAccessToken();
     console.log(this.strAccessToken);
     const UpdateAppsCharts = async () => {
-      const strResult = await this.FunctionGetApps(this.OktaConfig.strBaseURI + this.OktaConfig.strAllApps, this.strAccessToken)
+      const strResult = await this.FunctionGetApps(this.OktaConfig.strBaseURI + this.OktaApiEndpoints.strAllApps, this.strAccessToken)
     }
     await UpdateAppsCharts();
     this._snackBar.dismiss();

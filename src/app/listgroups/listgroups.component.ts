@@ -11,7 +11,7 @@ import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label, BaseChartDirective } from 'ng2-charts';
 import { Color } from 'ng2-charts';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import {OktaApiEndpoints} from 'app/shared/okta/okta-api-endpoints'
 
 @Component({
   selector: 'app-listgroups',
@@ -60,7 +60,7 @@ export class ListgroupsComponent implements OnInit {
   public chart3: BaseChartDirective;
 
   constructor(private OktaConfig: OktaConfig, private OktaAuthClient: OktaSDKAuthService, private cookieService: CookieService
-    , private _snackBar: MatSnackBar) { }
+    , private _snackBar: MatSnackBar, private OktaApiEndpoints: OktaApiEndpoints) { }
 
   updateChart() {
     this.chart3.update();
@@ -78,7 +78,7 @@ export class ListgroupsComponent implements OnInit {
     this.strAccessToken = this.OktaAuthClient.OktaSDKAuthClient.getAccessToken();
     console.log(this.strAccessToken);
     const UpdateAllGroupsCharts = async () => {
-      const strResult = await this.FunctionGetUserCount(this.OktaConfig.strBaseURI + this.OktaConfig.strAllGroupsFilter, this.strAccessToken)
+      const strResult = await this.FunctionGetUserCount(this.OktaConfig.strBaseURI + this.OktaApiEndpoints.strAllGroupsFilter, this.strAccessToken)
     }
     await UpdateAllGroupsCharts();
     this.updateChart();

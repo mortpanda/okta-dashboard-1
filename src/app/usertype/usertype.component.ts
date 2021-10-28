@@ -3,7 +3,7 @@ import { ViewEncapsulation } from '@angular/core';
 import { OktaConfig } from "app/shared/okta/okta-config";
 import { OktaSDKAuthService } from 'app/shared/okta/okta-auth-service';
 import { CookieService } from 'ngx-cookie-service';
-
+import {OktaApiEndpoints} from 'app/shared/okta/okta-api-endpoints'
 
 // Needs to be the below versions
 //npm install ng2-charts@2.3.0 --save
@@ -59,7 +59,7 @@ export class UsertypeComponent implements OnInit {
   public chart: BaseChartDirective;
 
   constructor(private OktaConfig: OktaConfig, private OktaAuthClient: OktaSDKAuthService, private cookieService: CookieService
-    , private _snackBar: MatSnackBar) { }
+    , private _snackBar: MatSnackBar, private OktaApiEndpoints: OktaApiEndpoints) { }
 
   updateChart() {
     this.chart.update();
@@ -77,7 +77,7 @@ export class UsertypeComponent implements OnInit {
     this.strAccessToken = this.OktaAuthClient.OktaSDKAuthClient.getAccessToken();
     console.log(this.strAccessToken);
     const UpdateAllUsersCharts = async () => {
-      const strResult = await this.FunctionGetUserCount(this.OktaConfig.strBaseURI + this.OktaConfig.strAllUsersFilter, this.strAccessToken)
+      const strResult = await this.FunctionGetUserCount(this.OktaConfig.strBaseURI + this.OktaApiEndpoints.strAllUsersFilter, this.strAccessToken)
     }
     await UpdateAllUsersCharts();
     this.updateChart();

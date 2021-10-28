@@ -14,6 +14,7 @@ import {
 } from '@okta/okta-auth-js'
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CookieService } from 'ngx-cookie-service';
+//import { OktaChecktokenService } from 'app/shared/okta/okta-checktoken.service';
 
 @Component({
   selector: 'app-dashboard-display-page',
@@ -39,18 +40,18 @@ export class DashboardDisplayPageComponent implements OnInit {
 
     //Check the access token validity
     //Get the current time
-    const secondsSinceEpoch = Math.round(Date.now() / 1000)
-    console.log('Time now : ' + secondsSinceEpoch);
+    // const secondsSinceEpoch = Math.round(Date.now() / 1000)
+    // console.log('Time now : ' + secondsSinceEpoch);
 
-    //Get the token expiration time
-    this.strIDToken = this.OktaAuthClient.OktaSDKAuthClient.tokenManager.getTokensSync().idToken;
-    console.log('Expiration time on token : ' + this.strIDToken.expiresAt)
+    // //Get the token expiration time
+    // this.strIDToken = this.OktaAuthClient.OktaSDKAuthClient.tokenManager.getTokensSync().idToken;
+    // console.log('Expiration time on token : ' + this.strIDToken.expiresAt)
 
-    if (Number(secondsSinceEpoch) > Number(this.strIDToken.expiresAt)) {
-      //Perform logout if the token has expired  
-      this.OktaLogout();
-    }
-    else {
+    // if (Number(secondsSinceEpoch) > Number(this.strIDToken.expiresAt)) {
+    //   //Perform logout if the token has expired  
+    //   this.OktaLogout();
+    // }
+    // else {
 
       this.strUserSession = await this.authService.session.exists()
         .then(function (exists) {
@@ -101,10 +102,15 @@ export class DashboardDisplayPageComponent implements OnInit {
           }
 
       }
-    }
+    // }
   }
   OktaLogout() {
     this.OktaAuthClient.OktaSDKAuthClient.signOut();
     this.cookieService.deleteAll();
   }
+
+  // TokenExpired(){
+  //   this.OktaChecktokenService.SessionExpire();
+  // }
 }
+

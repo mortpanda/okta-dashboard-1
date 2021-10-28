@@ -61,7 +61,8 @@ import { ListgroupsComponent } from './listgroups/listgroups.component';
 import { ListgroupmembercountComponent } from './listgroupmembercount/listgroupmembercount.component';
 import { AdmingroupsComponent } from './admingroups/admingroups.component';
 import { AppstatusComponent } from './appstatus/appstatus.component';
-
+import { OktaChecktokenService } from 'app/shared/okta/okta-checktoken.service';
+import { TokenexpireComponent } from './tokenexpire/tokenexpire.component';
 
 
 @NgModule({
@@ -83,6 +84,7 @@ import { AppstatusComponent } from './appstatus/appstatus.component';
     ListgroupmembercountComponent,
     AdmingroupsComponent,
     AppstatusComponent,
+    TokenexpireComponent,
      
     
     
@@ -123,6 +125,7 @@ import { AppstatusComponent } from './appstatus/appstatus.component';
     OktaAuthModule,
     MatSelectModule,
     ChartsModule,
+    
   ],
   providers: [
     OktaSDKAuthService,
@@ -131,6 +134,7 @@ import { AppstatusComponent } from './appstatus/appstatus.component';
     InactiveusersComponent,
     ChartsModule,
     AppstatusComponent,
+    OktaChecktokenService,
     ], 
 
 

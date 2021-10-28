@@ -3,7 +3,7 @@ import { ViewEncapsulation } from '@angular/core';
 import { OktaConfig } from "app/shared/okta/okta-config";
 import { OktaSDKAuthService } from 'app/shared/okta/okta-auth-service';
 import { CookieService } from 'ngx-cookie-service';
-
+import {OktaApiEndpoints} from 'app/shared/okta/okta-api-endpoints'
 
 // Needs to be the below versions
 //npm install ng2-charts@2.3.0 --save
@@ -69,7 +69,7 @@ export class ActiveusersComponent implements OnInit {
   public chart: BaseChartDirective;
 
   constructor(private OktaConfig: OktaConfig, private OktaAuthClient: OktaSDKAuthService, private cookieService: CookieService
-    ,private _snackBar: MatSnackBar) { }
+    ,private _snackBar: MatSnackBar,private OktaApiEndpoints: OktaApiEndpoints) { }
 
   updateChart() {
     //this.barChartData.push();
@@ -87,36 +87,36 @@ export class ActiveusersComponent implements OnInit {
     this.numTotalLicensedUsers='0';
     this._snackBar.open('Data Download in Progress');
     //console.log(this.OktaConfig.strStagedUsersFilter);
-    this.strURL = this.OktaConfig.strBaseURI + this.OktaConfig.strRecoveryUserFilter;
+    this.strURL = this.OktaConfig.strBaseURI + this.OktaApiEndpoints.strRecoveryUserFilter;
     this.strAccessToken = this.OktaAuthClient.OktaSDKAuthClient.getAccessToken();
     console.log(this.strAccessToken);
     this.strUserArraySize = '';
-    this.FunctionGetUserCount(this.OktaConfig.strBaseURI + this.OktaConfig.strActiveUserFilter, this.strAccessToken);
+    this.FunctionGetUserCount(this.OktaConfig.strBaseURI + this.OktaApiEndpoints.strActiveUserFilter, this.strAccessToken);
     this.strUserArraySize = '';
-    this.FunctionGetUserCount(this.OktaConfig.strBaseURI + this.OktaConfig.strProvisionedUsersFilter, this.strAccessToken);
+    this.FunctionGetUserCount(this.OktaConfig.strBaseURI + this.OktaApiEndpoints.strProvisionedUsersFilter, this.strAccessToken);
     this.strUserArraySize = '';
-    this.FunctionGetUserCount(this.OktaConfig.strBaseURI + this.OktaConfig.strRecoveryUserFilter, this.strAccessToken);
+    this.FunctionGetUserCount(this.OktaConfig.strBaseURI + this.OktaApiEndpoints.strRecoveryUserFilter, this.strAccessToken);
     this.strUserArraySize = '';
-    this.FunctionGetUserCount(this.OktaConfig.strBaseURI + this.OktaConfig.strPWExpiredFilter, this.strAccessToken);
+    this.FunctionGetUserCount(this.OktaConfig.strBaseURI + this.OktaApiEndpoints.strPWExpiredFilter, this.strAccessToken);
     this.strUserArraySize = '';
-    this.FunctionGetUserCount(this.OktaConfig.strBaseURI + this.OktaConfig.strLockedOutFilter, this.strAccessToken);
+    this.FunctionGetUserCount(this.OktaConfig.strBaseURI + this.OktaApiEndpoints.strLockedOutFilter, this.strAccessToken);
     const UpdateActiveUserCharts = async () => {
-      const strResult = await this.FunctionGetUserCount(this.OktaConfig.strBaseURI + this.OktaConfig.strActiveUserFilter, this.strAccessToken)
+      const strResult = await this.FunctionGetUserCount(this.OktaConfig.strBaseURI + this.OktaApiEndpoints.strActiveUserFilter, this.strAccessToken)
     }
     const UpdateProvisionedUserCharts = async () => {
-      const strResult = await this.FunctionGetUserCount(this.OktaConfig.strBaseURI + this.OktaConfig.strProvisionedUsersFilter, this.strAccessToken)
+      const strResult = await this.FunctionGetUserCount(this.OktaConfig.strBaseURI + this.OktaApiEndpoints.strProvisionedUsersFilter, this.strAccessToken)
     }
     const UpdateRecoveryUserCharts = async () => {
-      const strResult = await this.FunctionGetUserCount(this.OktaConfig.strBaseURI + this.OktaConfig.strRecoveryUserFilter, this.strAccessToken)
+      const strResult = await this.FunctionGetUserCount(this.OktaConfig.strBaseURI + this.OktaApiEndpoints.strRecoveryUserFilter, this.strAccessToken)
     }
     const UpdatePWExpiredUserCharts = async () => {
-      const strResult = await this.FunctionGetUserCount(this.OktaConfig.strBaseURI + this.OktaConfig.strPWExpiredFilter, this.strAccessToken)
+      const strResult = await this.FunctionGetUserCount(this.OktaConfig.strBaseURI + this.OktaApiEndpoints.strPWExpiredFilter, this.strAccessToken)
     }
     const UpdateLockedOutUserCharts = async () => {
-      const strResult = await this.FunctionGetUserCount(this.OktaConfig.strBaseURI + this.OktaConfig.strLockedOutFilter, this.strAccessToken)
+      const strResult = await this.FunctionGetUserCount(this.OktaConfig.strBaseURI + this.OktaApiEndpoints.strLockedOutFilter, this.strAccessToken)
     }
     const UpdateSuspendedUserCharts = async () => {
-      const strResult = await this.FunctionGetUserCount(this.OktaConfig.strBaseURI + this.OktaConfig.strSuspendedFilter, this.strAccessToken)
+      const strResult = await this.FunctionGetUserCount(this.OktaConfig.strBaseURI + this.OktaApiEndpoints.strSuspendedFilter, this.strAccessToken)
     }
 
     await UpdateActiveUserCharts();
@@ -147,22 +147,22 @@ export class ActiveusersComponent implements OnInit {
     /////////////////////////////////////
     // Set output test depending on the URL
     switch (strUserCountURL) {
-      case this.OktaConfig.strBaseURI + this.OktaConfig.strProvisionedUsersFilter:
+      case this.OktaConfig.strBaseURI + this.OktaApiEndpoints.strProvisionedUsersFilter:
         strUserType = "Provisioned Users : "
         break;
-      case this.OktaConfig.strBaseURI + this.OktaConfig.strActiveUserFilter:
+      case this.OktaConfig.strBaseURI + this.OktaApiEndpoints.strActiveUserFilter:
         strUserType = "Active Users : "
         break;
-      case this.OktaConfig.strBaseURI + this.OktaConfig.strRecoveryUserFilter:
+      case this.OktaConfig.strBaseURI + this.OktaApiEndpoints.strRecoveryUserFilter:
         strUserType = "Recovery Users : "
         break;
-      case this.OktaConfig.strBaseURI + this.OktaConfig.strPWExpiredFilter:
+      case this.OktaConfig.strBaseURI + this.OktaApiEndpoints.strPWExpiredFilter:
         strUserType = "Password Expired Users : "
         break;
-      case this.OktaConfig.strBaseURI + this.OktaConfig.strLockedOutFilter:
+      case this.OktaConfig.strBaseURI + this.OktaApiEndpoints.strLockedOutFilter:
         strUserType = "Locked Out Users : "
         break;
-      case this.OktaConfig.strBaseURI + this.OktaConfig.strSuspendedFilter:
+      case this.OktaConfig.strBaseURI + this.OktaApiEndpoints.strSuspendedFilter:
         strUserType = "Suspended Users : "
         break;
 
@@ -212,38 +212,38 @@ export class ActiveusersComponent implements OnInit {
     /////////////////////////////////////
     // Fill data in array depending on the URL
     switch (strUserCountURL) {
-      case this.OktaConfig.strBaseURI + this.OktaConfig.strProvisionedUsersFilter:
+      case this.OktaConfig.strBaseURI + this.OktaApiEndpoints.strProvisionedUsersFilter:
         strUserType = "Provisioned Users : "
         this.cookieService.set('OktaProvisionedUsers', this.strUserArraySize);
         
         break;
-      case this.OktaConfig.strBaseURI + this.OktaConfig.strActiveUserFilter:
+      case this.OktaConfig.strBaseURI + this.OktaApiEndpoints.strActiveUserFilter:
 
         strUserType = "Active Users : "
         this.cookieService.set('OktaActiveUsers', this.strUserArraySize);
         
         break;
 
-      case this.OktaConfig.strBaseURI + this.OktaConfig.strRecoveryUserFilter:
+      case this.OktaConfig.strBaseURI + this.OktaApiEndpoints.strRecoveryUserFilter:
 
         strUserType = "Users in Recovery state : "
         this.cookieService.set('OktaRecoveryUsers', this.strUserArraySize);
         
         break;
-      case this.OktaConfig.strBaseURI + this.OktaConfig.strPWExpiredFilter:
+      case this.OktaConfig.strBaseURI + this.OktaApiEndpoints.strPWExpiredFilter:
 
         strUserType = "Password Expired Users : "
         this.cookieService.set('OktaPWExpiredUsers', this.strUserArraySize);
         
         break;
-      case this.OktaConfig.strBaseURI + this.OktaConfig.strLockedOutFilter:
+      case this.OktaConfig.strBaseURI + this.OktaApiEndpoints.strLockedOutFilter:
 
         strUserType = "Locked out Users : "
         this.cookieService.set('OktaLockedoutUsers', this.strUserArraySize);
         
         break;
 
-      case this.OktaConfig.strBaseURI + this.OktaConfig.strSuspendedFilter:
+      case this.OktaConfig.strBaseURI + this.OktaApiEndpoints.strSuspendedFilter:
 
         strUserType = "Suspended Users : "
         this.cookieService.set('OktaSuspendedUsers', this.strUserArraySize);

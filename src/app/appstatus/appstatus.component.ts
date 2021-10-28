@@ -13,7 +13,7 @@ import { Color } from 'ng2-charts';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatTableDataSource } from '@angular/material/table';
-
+import {OktaApiEndpoints} from 'app/shared/okta/okta-api-endpoints'
 
 
 @Component({
@@ -31,7 +31,7 @@ export class AppstatusComponent implements OnInit {
 
 
   constructor(private OktaConfig: OktaConfig, private OktaAuthClient: OktaSDKAuthService, private cookieService: CookieService
-    , private _snackBar: MatSnackBar) { }
+    , private _snackBar: MatSnackBar,private OktaApiEndpoints: OktaApiEndpoints) { }
 
   ngOnInit(): void {
   }
@@ -44,7 +44,7 @@ export class AppstatusComponent implements OnInit {
     this.strAccessToken = this.OktaAuthClient.OktaSDKAuthClient.getAccessToken();
     console.log(this.strAccessToken);
     const UpdateAppsCharts = async () => {
-      const strResult = await this.FunctionGetApps(this.OktaConfig.strBaseURI + this.OktaConfig.strAllApps, this.strAccessToken)
+      const strResult = await this.FunctionGetApps(this.OktaConfig.strBaseURI + this.OktaApiEndpoints.strAllApps, this.strAccessToken)
     }
     await UpdateAppsCharts();
     this._snackBar.dismiss();
