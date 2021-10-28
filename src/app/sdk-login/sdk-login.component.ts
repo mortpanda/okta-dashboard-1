@@ -41,7 +41,7 @@ export class SdkLoginComponent implements OnInit {
   }
 
   async onSubmit() {
-    this.cookieService.delete('okta_loggedin_time');
+    
     // console.log("event fired");
     // console.log("loginInvalid", this.loginInvalid);
     // console.log("formSubmitAttempt", this.formSubmitAttempt);
@@ -54,9 +54,7 @@ export class SdkLoginComponent implements OnInit {
     var username = this.loginform.get("username").value;
     var password = this.loginform.get("password").value;
     await this.authService.login(username, password);
-    this.secondsSinceEpoch = Math.round(Date.now() / 1000)
-    console.log('Logged in time now : ' + this.secondsSinceEpoch);
-    this.cookieService.set('okta_loggedin_time', this.secondsSinceEpoch);
+    
     //} catch (err) {
     //alert(this.authService.strstateToken)      
     this.loginInvalid = true;

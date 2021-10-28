@@ -1,35 +1,5 @@
+
 <mat-tab-group class="tabGroup">
-    <mat-tab label="Users">
-        <a class="userDetailed"
-            href="https://support.okta.com/help/s/article/58335656-What-are-the-different-user-statuses-in-the-Okta-Password-Health-Check-Report?language=en_US"
-            target="_blank">
-            Click here for more details on user status</a>
-        <div class="fxcontainer" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="5px">
-
-            <div class="item item1 UserCount" id="activeUser">
-                <app-activeusers></app-activeusers>
-            </div>
-            <div class="item item1 UserCount" id="inactiveUser">
-                <app-inactiveusers></app-inactiveusers>
-            </div>
-            <div class="item item1 UserCount" id="authProvider">
-                <app-usertype></app-usertype>
-            </div>
-        </div>
-
-    </mat-tab>
-    <mat-tab label="Apps">
-       <div class="fxcontainer" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="5px">       
-            <div class="item item1 appList" id="appList">
-                <app-appstatus></app-appstatus>                
-            </div>
-            <div class="item item1 appList" id="Admin">
-            </div>
-            <div class="item item1 appList" id="memberCount">
-            </div>
-        </div>
-    </mat-tab>
-
     <mat-tab label="Groups">
         <div class="fxcontainer" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="5px">
             <div class="item item1 UserCount GroupType" id="ListGroups">
@@ -41,20 +11,47 @@
             <div class="item item1 GroupStats" id="memberCount">
                 <app-listgroupmembercount></app-listgroupmembercount>
             </div>
+            <!-- <div class="item item1 GroupStats" id="memberCount">
+                
+            </div> -->
         </div>
 
     </mat-tab>
     
+    
+    <mat-tab label="Users">
+        <!-- <a class="userDetailed"
+            href="https://support.okta.com/help/s/article/58335656-What-are-the-different-user-statuses-in-the-Okta-Password-Health-Check-Report?language=en_US"
+            target="_blank">
+            Click here for more details on user status</a> -->
+        <div class="fxcontainer" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="5px">
+
+            <div class="item item2 UserCount" id="activeUser">
+                <app-activeusers></app-activeusers>
+            </div>
+            <div class="item item2 InactiveUserCount" id="inactiveUser">
+                <app-inactiveusers></app-inactiveusers>
+            </div>
+            <div class="item item2 Authprovider" id="authProvider">
+                <app-usertype></app-usertype>
+            </div>
+        </div>
+
+    </mat-tab>
+    <mat-tab label="Apps">
+       <div class="fxcontainer" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="5px">       
+            <div class="item item3 appList" id="appList">
+                <app-appstatus></app-appstatus>                
+            </div>
+            <div class="item item3 appList" id="Admin">
+            </div>
+            <div class="item item3 appList" id="memberCount">
+            </div>
+        </div>
+    </mat-tab>
+
+    
+    
 </mat-tab-group>
 
-<!-- 
 
-
-
-    </div>
-
-
-</div>
-
-<app-whoisokta></app-whoisokta>
-<app-footer></app-footer> -->

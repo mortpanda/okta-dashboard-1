@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OktausersdownloadService } from 'app/shared/okta/oktausersdownload.service';
 import { OktagroupsdownloadService } from 'app/shared/okta/oktagroupsdownload.service';
 import { OktaappsdownloadService } from 'app/shared/okta/oktaappsdownload.service';
-
+import { OktaConfig } from "app/shared/okta/okta-config";
 
 @Component({
   selector: 'app-dataload',
@@ -15,7 +15,7 @@ export class DataloadComponent implements OnInit {
   strHeading;
 
 
-  constructor(private OktausersdownloadService: OktausersdownloadService, private OktagroupsdownloadService: OktagroupsdownloadService
+  constructor(private OktaConfig: OktaConfig, private OktausersdownloadService: OktausersdownloadService, private OktagroupsdownloadService: OktagroupsdownloadService
     , private OktaappsdownloadService: OktaappsdownloadService) { }
 
   async ngOnInit() {
@@ -47,6 +47,12 @@ export class DataloadComponent implements OnInit {
     this.strDownloadeditem = 'Download completed, please close this dialog';
     this.strHeading = '';
     this.strHeading = 'Completed!!';
+  }
+
+  GotoBash(){
+    window.location.replace(this.OktaConfig.strRedirectURL);
+    // location.reload();
+
   }
 
 }

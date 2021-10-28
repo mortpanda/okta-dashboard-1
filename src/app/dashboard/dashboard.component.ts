@@ -25,9 +25,10 @@ export class DashboardComponent implements OnInit {
   timeNow;
   loggedinTime;
   timeDiff
-  
+  bolCheckedLoogedin;
 
-  constructor(public _matdialog: MatDialog, private DataloadComponent: DataloadComponent, 
+
+  constructor(public _matdialog: MatDialog, private DataloadComponent: DataloadComponent,
     private OktaConfig: OktaConfig, private OktaAuthClient: OktaSDKAuthService, private cookieService: CookieService
     , private _snackBar: MatSnackBar, private OktaApiEndpoints: OktaApiEndpoints, private OktaChecktokenService: OktaChecktokenService
     , private OktausersdownloadService: OktausersdownloadService, private OktagroupsdownloadService: OktagroupsdownloadService
@@ -35,25 +36,39 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.OktaChecktokenService.functionCheckToken();
-    
-    
+
+
     this.timeNow = Math.round(Date.now() / 1000)
     console.log('Time now : ' + this.timeNow);
+
+
+    this. bolCheckedLoogedin = this.cookieService.check('okta_loggedin_time');
+
     this.loggedinTime = this.cookieService.get('okta_loggedin_time');
-    console.log('Loggedin time : ' + this.loggedinTime);
-    // console.log('Logged in time now : ' + this.secondsSinceEpoch);
-    // this.cookieService.set('okta_loggedin_time', this.secondsSinceEpoch);
-    this.timeDiff = this.timeNow - this.loggedinTime
-    console.log('Time difference is : ' + this.timeDiff + " seconds")
-    
-    if (Number(this.timeDiff) > 3600){
-      console.log('The data is more than 1 hours old, downloading a new set....');
+      
+    if (this.bolCheckedLoogedin = false) {
+      console.log('okta_loggedin_time does not exist in cookie')
+      this.openDialog();
+    } 
+    else {
+
+
+      console.log('Loggedin time : ' + this.loggedinTime);
+      // console.log('Logged in time now : ' + this.secondsSinceEpoch);
+      // this.cookieService.set('okta_loggedin_time', this.secondsSinceEpoch);
+      this.timeDiff = this.timeNow - this.loggedinTime
+      console.log('Time difference is : ' + this.timeDiff + " seconds")
+
+      if (Number(this.timeDiff) > 3600) {
+        console.log('The data is more than 1 hours old, downloading a new set....');
         this.openDialog();
-        
+
+      }
+      else {
+        console.log('The data was obtained from Okta less than an hour ago.  Not downloading.');
+      }
     }
-    else{
-      console.log('The data was obtained from Okta less than an hour ago.  Not downloading.');
-    }    
+
   }
 
 
@@ -64,7 +79,7 @@ export class DashboardComponent implements OnInit {
     dialogConfig.height = "270px";
     dialogConfig.width = "400px";
 
-    const dialogRef = this._matdialog.open(DataloadComponent,dialogConfig);
+    const dialogRef = this._matdialog.open(DataloadComponent, dialogConfig);
     return dialogRef.afterClosed()
       .toPromise() // here you have a Promise instead an Observable
       .then(result => {

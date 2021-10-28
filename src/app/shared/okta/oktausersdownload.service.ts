@@ -19,7 +19,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   providedIn: 'root'
 })
 export class OktausersdownloadService {
-
+  secondsSinceEpoch;
   strAccessToken;
   strURL;
   arrUserJson: any = {};
@@ -98,7 +98,12 @@ export class OktausersdownloadService {
     //Save to local storate
     localStorage.setItem('okta_users', oktaUsers);
     await fetchRequest(strURL);
+    
+    this.secondsSinceEpoch = Math.round(Date.now() / 1000)
+        console.log('Logged in time now : ' + this.secondsSinceEpoch);
+        this.cookieService.set('okta_loggedin_time', this.secondsSinceEpoch);
   }
+  
 
 }
 

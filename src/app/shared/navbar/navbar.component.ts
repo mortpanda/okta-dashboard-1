@@ -126,6 +126,7 @@ export class NavbarComponent implements OnInit {
 
     OktaLogout() {
         this.OktaAuthClient.OktaSDKAuthClient.signOut();
+        this.cookieService.delete('okta_loggedin_time');
         this.cookieService.deleteAll();
         localStorage.clear();
     }

@@ -12,6 +12,7 @@ import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label, BaseChartDirective } from 'ng2-charts';
 import { Color } from 'ng2-charts';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DataloadComponent} from 'app/dataload/dataload.component';
 
 
 @Component({
@@ -60,15 +61,16 @@ export class ActiveusersComponent implements OnInit {
   public chart: BaseChartDirective;
 
   constructor(private OktaConfig: OktaConfig, private OktaAuthClient: OktaSDKAuthService, private cookieService: CookieService
-    , private _snackBar: MatSnackBar, private OktaApiEndpoints: OktaApiEndpoints) { }
+    , private _snackBar: MatSnackBar, private OktaApiEndpoints: OktaApiEndpoints, private DataloadComponent: DataloadComponent) { }
 
-  updateChart() {
-    //this.barChartData.push();
-    this.chart.update();
+  // updateChart() {
+  //   //this.barChartData.push();
+  //   this.chart.chart.update();
 
-  }
+  // }
 
   async ngOnInit() {
+    //await this.DataloadComponent.ngOnInit();
     this.intActive = 0;
     this.intSuspended = 0;
     this.intRecovery = 0;
@@ -108,7 +110,9 @@ export class ActiveusersComponent implements OnInit {
     this.barChartData[0].data[2] = this.intPWExpired;
     this.barChartData[0].data[3] = this.intLocked;
     this.barChartData[0].data[4] = this.intSuspended;
+    // this.updateChart()
   }
+  
 }
 
 
