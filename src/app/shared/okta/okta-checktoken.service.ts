@@ -14,8 +14,6 @@ export class OktaChecktokenService {
 
   async openDialog(): Promise<number> {
     const dialogRef = this._matdialog.open(TokenexpireComponent, {
-      //width: "500px",
-      //data: { sheets: this.sheetNames }
     });
     return dialogRef.afterClosed()
       .toPromise() // here you have a Promise instead an Observable

@@ -123,7 +123,7 @@ export class ListgroupsComponent implements OnInit {
     /////////////////////////////////////
     await fetchRequest(strUserCountURL).then(data => {
       var aggregatedData = [];
-
+      
       this.countOkta = 0;
       this.countWindows = 0;
       aggregatedData = aggregatedData.concat(data)

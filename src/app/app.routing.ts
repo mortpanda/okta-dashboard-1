@@ -8,7 +8,7 @@ import { Injector, NgModule } from '@angular/core';
 import { LoginPageComponent } from './login-page/login-page.component';
 // import { EnLoginPageComponent } from './en-login-page/en-login-page.component';
 // import { EnPortalDisplaypageComponent } from 'app/en-portal-displaypage/en-portal-displaypage.component';
-import { UsersGroupsComponent } from './users-groups/users-groups.component';
+
 //import {DashboardComponent} from './dashboard/dashboard.component';
 import { DashboardDisplayPageComponent } from './dashboard-display-page/dashboard-display-page.component';
 

@@ -42,7 +42,7 @@ export class AuthService {
     element.parentNode.removeChild(element);
 
     this.strstateToken = transaction.data.stateToken;
-    //console.log(JSON.stringify(this.strstateToken));
+    
     //Uses the state token to perform MFA authentication using a newly created widget
     const OktaClientID = this.OktaConfig.strClientID;
     const OktaBaseURI = this.OktaConfig.strBaseURI;
@@ -76,7 +76,7 @@ export class AuthService {
 
     oktaSignIn.authClient.token.getUserInfo().then(function (user) {
       
-
+      
       console.log("Hello, " + user.email + "! You are *still* logged in! :)");
       //document.getElementById("logout").style.display = 'block';
     }, function (error) {
@@ -88,10 +88,7 @@ export class AuthService {
 
         const idToken = tokens.idToken;
         const accessToken = tokens.accessToken;
-        console.log("Hello, " + idToken.claims.email + "! You just logged in! :)");
-        // console.log(idToken);
-        // console.log(accessToken);
-
+        console.log("Hello, " + idToken.claims.email + "! You just logged in! :)");       
 
         return oktaSignIn.authClient.token.getUserInfo(accessToken, idToken)
           .then(function (user) {

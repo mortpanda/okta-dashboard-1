@@ -47,7 +47,6 @@ import { WhoisoktaComponent } from './whoisokta/whoisokta.component';
 import { SdkLoginComponent } from './sdk-login/sdk-login.component';
 
 import { EnFooterComponent } from './shared/en-footer/en-footer.component';
-import { UsersGroupsComponent } from './users-groups/users-groups.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import {CookieService} from 'ngx-cookie-service';
@@ -63,7 +62,8 @@ import { AdmingroupsComponent } from './admingroups/admingroups.component';
 import { AppstatusComponent } from './appstatus/appstatus.component';
 import { OktaChecktokenService } from 'app/shared/okta/okta-checktoken.service';
 import { TokenexpireComponent } from './tokenexpire/tokenexpire.component';
-
+import { DataloadComponent } from './dataload/dataload.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -74,7 +74,6 @@ import { TokenexpireComponent } from './tokenexpire/tokenexpire.component';
     WhoisoktaComponent,
     SdkLoginComponent,
     EnFooterComponent,
-    UsersGroupsComponent,
     DashboardComponent,
     DashboardDisplayPageComponent,
     ActiveusersComponent,
@@ -85,6 +84,7 @@ import { TokenexpireComponent } from './tokenexpire/tokenexpire.component';
     AdmingroupsComponent,
     AppstatusComponent,
     TokenexpireComponent,
+    DataloadComponent,
      
     
     
@@ -125,6 +125,7 @@ import { TokenexpireComponent } from './tokenexpire/tokenexpire.component';
     OktaAuthModule,
     MatSelectModule,
     ChartsModule,
+    MatProgressBarModule,
     
   ],
   providers: [
@@ -135,6 +136,7 @@ import { TokenexpireComponent } from './tokenexpire/tokenexpire.component';
     ChartsModule,
     AppstatusComponent,
     OktaChecktokenService,
+    DataloadComponent,
     ], 
 
 
