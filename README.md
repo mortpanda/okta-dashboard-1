@@ -10,13 +10,12 @@ Okta org overview dashboard
 <img src="/Capture7.PNG" alt="drawing" width="600"/>
 <img src="/Capture8.PNG" alt="drawing" width="600"/>
 
-**Please note this is NOT an official Okta tool, and the Okta support team does NOT provide support for this.**
-This is merely a personal projct, and NOT supported by Okta's support team.
+**Please note this is NOT an official Okta tool, and the Okta support team WILL NOT provide support for this.**
+
 
 
 ## What does this tool do?
-This website is a simple demo portal site, which contains links to external sites, and can be used to demo Single Sign-On using OIDC.
-There are 3 x groups in the org that determine the links that get displayed on the portal.
+This is a simple dashboard the shows the Okta org statistics.
 
 
 
@@ -87,7 +86,6 @@ typescript                      4.1.6
  strLang = '{{Language code}}';
  strBrand =  '{{Colour}}';
  strLogo = '{{Logo URL}}';
- strMFAClientID = '{{}}';
  strPortalAddress = '{{Portal address}}';
 
 ```

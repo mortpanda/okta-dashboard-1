@@ -1,10 +1,7 @@
 <mat-tab-group class="tabGroup">
-
     <mat-tab label="Users">
-
         <div class="fxcontainer" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="5px">
-
-            <div class="item item2 UserCount" id="activeUser">
+            <div class="item item2 " id="activeUser">
                 <app-activeusers></app-activeusers>
             </div>
             <div class="item item2 InactiveUserCount" id="inactiveUser">
@@ -13,42 +10,29 @@
             <div class="item item2 Authprovider" id="authProvider">
                 <app-usertype></app-usertype>
             </div>
-            <a class="userDetailed"
+            <!-- <a class="userDetailed"
                 href="https://support.okta.com/help/s/article/58335656-What-are-the-different-user-statuses-in-the-Okta-Password-Health-Check-Report?language=en_US"
                 target="_blank">
-                Click here for more details on user status</a>
+                Click here for more details on user status</a> -->
         </div>
-
     </mat-tab>
 
     <mat-tab label="Groups">
         <div class="fxcontainer" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="5px">
-            <div class="item item1 UserCount GroupType" id="ListGroups">
+            <div class="item item1  " id="ListGroups">
                 <app-listgroups></app-listgroups>
             </div>
-            <div class="item item1 adminGroup" id="Admin">
+            <div class="item item1 " id="Admin">
                 <app-admingroups></app-admingroups>
             </div>
-            <div class="item item1 GroupType" id="groupType">
+            <div class="item item1 " id="groupType">
                 <app-grouptype></app-grouptype>
             </div>
-            <a class="userDetailed" href="https://developer.okta.com/docs/reference/api/groups/#group-type"
-                target="_blank">
-                About group types</a>
+
         </div>
-
-    </mat-tab>
-
-    <mat-tab label="Groups Details">
-        <div class="fxcontainer" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="5px">
-            <div class="item item1 GroupStats" id="memberCount">
-                <app-listgroupmembercount></app-listgroupmembercount>
-            </div>
-            <!-- <div class="item item1 GroupStats" id="memberCount">
-                
-            </div> -->
-        </div>
-
+        <!-- <a class="userDetailed" href="https://developer.okta.com/docs/reference/api/groups/#group-type"
+        target="_blank">
+        About group types</a> -->
     </mat-tab>
 
     <mat-tab label="Apps">
@@ -65,21 +49,27 @@
 
         </div>
     </mat-tab>
+
+    <mat-tab label="Groups Details">
+        <div class="fxcontainer" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="5px">
+            <div class="item item1 GroupStats" id="memberCount">
+                <app-listgroupmembercount></app-listgroupmembercount>
+            </div>
+            <!-- <a class="userDetailed" href="https://developer.okta.com/docs/reference/api/groups/#group-object"
+            target="_blank">
+            About group properties</a> -->
+        </div>
+    </mat-tab>
+
     <mat-tab label="App Details">
         <div class="fxcontainer" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="5px">
             <div class="item item3 appDetails" id="appDetails">
                 <app-appdetails></app-appdetails>
             </div>
+            <!-- <a class="userDetailed" href="https://developer.okta.com/docs/reference/api/apps/#application-object"
+            target="_blank">
+            About application properties</a> -->
 
         </div>
     </mat-tab>
-
-
-
-
-
-
-
-
-
 </mat-tab-group>
