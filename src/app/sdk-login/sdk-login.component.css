@@ -19,7 +19,7 @@
     overflow: auto;
     border-radius: 5px;
     box-sizing: border-box;
-    font-size: 12px;
+    font-size: 14px;
     
   }
   
@@ -73,7 +73,7 @@
   } */
   
   .csm-banner{
-    align-self: centre !important;
-    align-content: center !important;
+    align-self: center!important;
+    align-content: center!important;
     text-align: center !important;
   }

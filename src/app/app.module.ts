@@ -67,6 +67,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { AppsignonComponent } from './appsignon/appsignon.component';
 import { AppfeatureComponent } from './appfeature/appfeature.component';
 import { AppdetailsComponent } from './appdetails/appdetails.component';
+import { GrouptypeComponent } from './grouptype/grouptype.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { AppdetailsComponent } from './appdetails/appdetails.component';
     AppsignonComponent,
     AppfeatureComponent,
     AppdetailsComponent,
+    GrouptypeComponent,
      
     
     

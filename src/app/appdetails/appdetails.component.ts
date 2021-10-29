@@ -58,12 +58,10 @@ intGroupDetailRows;
     var groupType = "";
     this.arrGroupDetailsJson = JSON.parse(arrGroupInfo);
     console.log(this.arrGroupDetailsJson);
-    for (var i = 0; i < this.arrGroupDetailsJson.length; i++) {
-     
-     
+    for (var i = 0; i < this.arrGroupDetailsJson.length; i++) {     
           ELEMENT_DATA[i] = {
             appName : this.arrGroupDetailsJson[i].label,
-            appStatus: this.arrGroupDetailsJson[i]._status,
+            appStatus: this.arrGroupDetailsJson[i].status,
             appCreated: this.arrGroupDetailsJson[i].created,
             ssoMode: this.arrGroupDetailsJson[i].signOnMode,
             appFeatures: this.arrGroupDetailsJson[i].features,        

@@ -1,6 +1,6 @@
-.appDetails{
+.GroupType{
     text-align: left!important;
-    width: 1000px!important;
+    margin: 15px!important
 }
 
 .mat-tab-group{

@@ -1,8 +1,14 @@
-# ciam-angular-portal-profile
-Japanese CIAM Demo Portal Site
+# okta-Dashboard-1
+Okta org overview dashboard
 
-<img src="/Capture2.PNG" alt="drawing" width="600"/>
 <img src="/Capture.PNG" alt="drawing" width="600"/>
+<img src="/Capture2.PNG" alt="drawing" width="600"/>
+<img src="/Capture3.PNG" alt="drawing" width="600"/>
+<img src="/Capture4.PNG" alt="drawing" width="600"/>
+<img src="/Capture5.PNG" alt="drawing" width="600"/>
+<img src="/Capture6.PNG" alt="drawing" width="600"/>
+<img src="/Capture7.PNG" alt="drawing" width="600"/>
+<img src="/Capture8.PNG" alt="drawing" width="600"/>
 
 **Please note this is NOT an official Okta tool, and the Okta support team does NOT provide support for this.**
 This is merely a personal projct, and NOT supported by Okta's support team.
@@ -13,11 +19,7 @@ This website is a simple demo portal site, which contains links to external site
 There are 3 x groups in the org that determine the links that get displayed on the portal.
 
 
-**ANGULAR-CIAM-DEMO-PORTAL-WORDPRESS** - If the user is a member of this group, a link will be displayed to a member-only CMS.
 
-**ANGULAR-CIAM-DEMO-PORTAL-WORDPRESS-BB** - If the user is a member of this group, a link will be displayed to a member-only bulletin board.
-
-**ANGULAR-CIAM-DEMO-PORTAL-MOODLE** - If the user is a member of this group, a link will be displayed to an online learning site.
 
 ## Development Environment
 ```
