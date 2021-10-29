@@ -49,7 +49,7 @@ export class DataloadComponent implements OnInit {
     this.strHeading = 'Completed!!';
   }
 
-  GotoBash(){
+  GotoDash(){
     window.location.replace(this.OktaConfig.strRedirectURL);
     // location.reload();
 

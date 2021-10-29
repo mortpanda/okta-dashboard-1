@@ -42,16 +42,15 @@ export class DashboardComponent implements OnInit {
     console.log('Time now : ' + this.timeNow);
 
 
-    this. bolCheckedLoogedin = this.cookieService.check('okta_loggedin_time');
+    this.bolCheckedLoogedin = this.cookieService.check('okta_loggedin_time');
 
     this.loggedinTime = this.cookieService.get('okta_loggedin_time');
-      
+
     if (this.bolCheckedLoogedin = false) {
       console.log('okta_loggedin_time does not exist in cookie')
       this.openDialog();
-    } 
+    }
     else {
-
 
       console.log('Loggedin time : ' + this.loggedinTime);
       // console.log('Logged in time now : ' + this.secondsSinceEpoch);

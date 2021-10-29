@@ -49,6 +49,13 @@ export class InactiveusersComponent implements OnInit {
           stepSize: 1,
           beginAtZero: true
         }
+      }],
+      yAxes: [{
+        ticks: {
+          min: 0,
+          // stepSize: 1,
+          beginAtZero: true
+        }
       }]
     }
   };
@@ -78,9 +85,9 @@ async ngOnInit() {
   this.intProvisioned = 0;
   this.intDeprovisioned = 0;
   
-  var strArrayUsers = localStorage.getItem('okta_users');
-  this.arrInactiveUserJSON  = JSON.parse(strArrayUsers);
-  console.log(this.arrInactiveUserJSON );
+  var strArrayInactiveUsers = localStorage.getItem('okta_users');
+  this.arrInactiveUserJSON  = JSON.parse(strArrayInactiveUsers);
+//  console.log(this.arrInactiveUserJSON );
   console.log('User array length is : ' + this.arrInactiveUserJSON.length);
   for (var i = 0; i < this.arrInactiveUserJSON.length; i++) {
     switch (this.arrInactiveUserJSON[i].status) {

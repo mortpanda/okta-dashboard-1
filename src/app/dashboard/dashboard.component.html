@@ -1,5 +1,19 @@
-
 <mat-tab-group class="tabGroup">
+
+    <mat-tab label="Apps">
+        <div class="fxcontainer" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="5px">
+            <div class="item item3 appList" id="appList">
+                <app-appstatus></app-appstatus>                
+            </div>
+            <div class="item item3 appSSO" id="appSSO">
+                <app-appsignon></app-appsignon> 
+            </div>
+            <div class="item item3 appFeature" id="appFeature">
+                <app-appfeature></app-appfeature>
+            </div>
+        </div>
+    </mat-tab>
+
     <mat-tab label="Groups">
         <div class="fxcontainer" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="5px">
             <div class="item item1 UserCount GroupType" id="ListGroups">
@@ -17,8 +31,7 @@
         </div>
 
     </mat-tab>
-    
-    
+
     <mat-tab label="Users">
         <!-- <a class="userDetailed"
             href="https://support.okta.com/help/s/article/58335656-What-are-the-different-user-statuses-in-the-Okta-Password-Health-Check-Report?language=en_US"
@@ -38,20 +51,8 @@
         </div>
 
     </mat-tab>
-    <mat-tab label="Apps">
-       <div class="fxcontainer" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="5px">       
-            <div class="item item3 appList" id="appList">
-                <app-appstatus></app-appstatus>                
-            </div>
-            <div class="item item3 appList" id="Admin">
-            </div>
-            <div class="item item3 appList" id="memberCount">
-            </div>
-        </div>
-    </mat-tab>
 
-    
-    
+
+
+
 </mat-tab-group>
-
-

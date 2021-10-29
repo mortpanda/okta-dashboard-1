@@ -1,4 +1,7 @@
-<p>appstatus works!</p>
+<h3>App Status</h3>
 
-<!-- <br>
-<a class="btn btn-danger btn-round config activeUsers" id="UserInfo_btn" (click)="GetApps()">Get Apps</a> -->
+<div>
+    <canvas baseChart [datasets]="barChartData5" [labels]="barChartLabels5" [options]="barChartOptions5"
+        [plugins]="barChartPlugins5" [legend]="barChartLegend5" [chartType]="barChartType5" [colors]="barChartColor5">
+    </canvas>
+</div>

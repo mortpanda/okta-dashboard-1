@@ -22,7 +22,7 @@ import { DataloadComponent} from 'app/dataload/dataload.component';
   encapsulation: ViewEncapsulation.None
 })
 export class ActiveusersComponent implements OnInit {
-  StatusUsers;
+  //StatusUsers;
   arrStatusUserJSON: any = {};
   intActive;
   intSuspended;
@@ -46,6 +46,13 @@ export class ActiveusersComponent implements OnInit {
           stepSize: 1,
           beginAtZero: true
         }
+      }],
+      yAxes: [{
+        ticks: {
+          min: 0,
+          // stepSize: 1,
+          beginAtZero: true
+        }
       }]
     }
   };
@@ -57,8 +64,8 @@ export class ActiveusersComponent implements OnInit {
     { data: [0, 0, 0, 0, 0], label: 'Users' }
   ];
 
-  @ViewChild(BaseChartDirective)
-  public chart: BaseChartDirective;
+  // @ViewChild(BaseChartDirective)
+  // public chart: BaseChartDirective;
 
   constructor(private OktaConfig: OktaConfig, private OktaAuthClient: OktaSDKAuthService, private cookieService: CookieService
     , private _snackBar: MatSnackBar, private OktaApiEndpoints: OktaApiEndpoints, private DataloadComponent: DataloadComponent) { }
@@ -78,7 +85,6 @@ export class ActiveusersComponent implements OnInit {
     this.intLocked = 0;
     var strArrayUsers = localStorage.getItem('okta_users');
     this.arrStatusUserJSON = JSON.parse(strArrayUsers);
-    console.log(this.arrStatusUserJSON);
     console.log('User array length is : ' + this.arrStatusUserJSON.length);
     for (var i = 0; i < this.arrStatusUserJSON.length; i++) {
       switch (this.arrStatusUserJSON[i].status) {

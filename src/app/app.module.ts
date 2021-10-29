@@ -64,6 +64,8 @@ import { OktaChecktokenService } from 'app/shared/okta/okta-checktoken.service';
 import { TokenexpireComponent } from './tokenexpire/tokenexpire.component';
 import { DataloadComponent } from './dataload/dataload.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { AppsignonComponent } from './appsignon/appsignon.component';
+import { AppfeatureComponent } from './appfeature/appfeature.component';
 
 @NgModule({
   declarations: [
@@ -85,6 +87,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     AppstatusComponent,
     TokenexpireComponent,
     DataloadComponent,
+    AppsignonComponent,
+    AppfeatureComponent,
      
     
     

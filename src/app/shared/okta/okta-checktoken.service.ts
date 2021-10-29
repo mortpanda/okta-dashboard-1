@@ -19,10 +19,10 @@ export class OktaChecktokenService {
       .toPromise() // here you have a Promise instead an Observable
       .then(result => {
         console.log("The dialog was closed " + result);
-        //this.sheetIndex = result;
-        this.OktaSDKAuthService.OktaSDKAuthClient.signOut();
-        this.cookieService.deleteAll();
-        localStorage.clear();
+        
+        // this.OktaSDKAuthService.OktaSDKAuthClient.signOut();
+        // this.cookieService.deleteAll();
+        // localStorage.clear();
         return Promise.resolve(result); // will return a Promise here
       });
 
