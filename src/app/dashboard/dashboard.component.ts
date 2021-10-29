@@ -40,10 +40,7 @@ export class DashboardComponent implements OnInit {
 
     this.timeNow = Math.round(Date.now() / 1000)
     console.log('Time now : ' + this.timeNow);
-
-
     this.bolCheckedLoogedin = this.cookieService.check('okta_loggedin_time');
-
     this.loggedinTime = this.cookieService.get('okta_loggedin_time');
 
     if (this.bolCheckedLoogedin = false) {
