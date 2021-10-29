@@ -15,7 +15,10 @@ Okta org overview dashboard
 
 
 ## What does this tool do?
-This is a simple dashboard the shows the Okta org statistics.
+
+* This is a simple dashboard the shows the Okta org statistics.
+* Uses an OpenID Connect access token to retrieve data from the Okta org
+* A service runs on a periodic basis to check the validity of the access token, and if the access token is found to be invalid, the user will be forced to re-authenticate.
 
 
 
