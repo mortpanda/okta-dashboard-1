@@ -1,0 +1,51 @@
+
+.mat-elevation-z8 {
+    width: 100%;
+    border-radius: 15px!important;
+    box-shadow: none!important;
+    padding: 15px!important;
+    white-space: normal;
+    word-wrap: break-word;
+
+}
+
+.listGroups {
+    margin: 0px!important;
+    padding-top: 0px!important;
+}
+
+.mat-h2, .mat-title, .mat-typography h2 {
+    font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
+    letter-spacing: normal;
+    margin: 0 0 0px!important;
+}
+
+.mat-form-field {
+    margin-top: 0px!important;
+    /* font-size: 12px!important; */
+    margin-bottom: 0px!important;
+    padding: 5px!important
+}
+
+.mat-cell {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    width: 250px!important;
+    word-break: break-word;
+}
+
+tr.mat-row, tr.mat-footer-row {
+    height: 20px!important;
+    /* font-size: 6px!important; */
+}
+
+.GroupStats{
+    text-align: left!important;
+}
+
+
+.mat-table thead, .mat-table tbody, .mat-table tfoot, mat-header-row, mat-row, mat-footer-row, [mat-header-row], [mat-row], [mat-footer-row], .mat-table-sticky {
+    /* font-size: 6px!important; */
+    white-space: normal;
+    word-wrap: break-word;
+}

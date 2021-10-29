@@ -66,6 +66,7 @@ import { DataloadComponent } from './dataload/dataload.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { AppsignonComponent } from './appsignon/appsignon.component';
 import { AppfeatureComponent } from './appfeature/appfeature.component';
+import { AppdetailsComponent } from './appdetails/appdetails.component';
 
 @NgModule({
   declarations: [
@@ -89,6 +90,7 @@ import { AppfeatureComponent } from './appfeature/appfeature.component';
     DataloadComponent,
     AppsignonComponent,
     AppfeatureComponent,
+    AppdetailsComponent,
      
     
     

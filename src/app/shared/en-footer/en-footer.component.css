@@ -1,6 +1,10 @@
 .footer{
     z-index: 9999999;
     position: static!important;
+    height: 10px!important;
+    line-height: 16px!important;
+    
+    
 }
 .github_logo {
     display: block;
@@ -13,4 +17,6 @@
 
  .body{
     font-family: "ABCWhyte Book","-apple-system","BlinkMacSystemFont","Segoe UI","Roboto","Oxygen-Sans","Ubuntu","Cantarell","Helvetica Neue",sans-serif!important;
+    
 }
+

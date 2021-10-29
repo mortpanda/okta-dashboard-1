@@ -1,0 +1,66 @@
+<h3>Application Details</h3>
+
+<div>
+    <!-- <a class="btn btn-danger btn-round listGroups" id="listGroups" (click)="GetGroupMembers()">Get Members</a> -->
+    <!-- <a class="btn btn-danger btn-round listGroups" id="listGroups" (click)="FunctionFillTable()">Fill table</a> -->
+
+
+    <a>
+        <mat-form-field appearance="standard">
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="type app name" #input>
+        </mat-form-field>
+    </a>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+        <!-- <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        </ng-container> -->
+
+        <!-- Columns -->
+        <ng-container matColumnDef="Name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.appName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Status">
+            <th mat-header-cell *matHeaderCellDef> Status </th>
+            <td mat-cell *matCellDef="let element"> {{element.appStatus}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="Created date">
+            <th mat-header-cell *matHeaderCellDef> Created </th>
+            <td mat-cell *matCellDef="let element"> {{element.appCreated}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="SSO Mode">
+            <th mat-header-cell *matHeaderCellDef> SSO Mode </th>
+            <td mat-cell *matCellDef="let element"> {{element.ssoMode}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Features">
+            <th mat-header-cell *matHeaderCellDef> Features </th>
+            <td mat-cell *matCellDef="let element"> {{element.appFeatures}} </td>
+        </ng-container>
+
+        <!-- <ng-container matColumnDef="Apps">
+            <th mat-header-cell *matHeaderCellDef> Apps </th>
+            <td mat-cell *matCellDef="let element"> {{element.Apps}} </td>
+        </ng-container> -->
+        <!-- Columns -->
+
+
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+
+</div>
