@@ -24,7 +24,7 @@ Okta org overview dashboard
 
 ## Required Scopes and claims
 
-
+## Rate Limits
 
 ## Development Environment
 ```
