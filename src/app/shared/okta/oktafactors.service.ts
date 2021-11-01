@@ -33,9 +33,9 @@ export class OktafactorsService {
 
     }
 
-    async GeMFA() {
+    async GetMFA() {
 
-      // this._snackBar.open('Data Download in Progress');
+      
       
       this.strAccessToken = this.OktaAuthClient.OktaSDKAuthClient.getAccessToken();
       console.log(this.strAccessToken);

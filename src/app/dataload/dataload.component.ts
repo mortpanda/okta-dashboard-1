@@ -42,7 +42,7 @@ export class DataloadComponent implements OnInit {
 
     this.strDownloadeditem = 'Downloading MFA data from the org.....';
     console.log('Download users');
-    await this.OktafactorsService.GeMFA();
+    await this.OktafactorsService.GetMFA();
 
     
     document.getElementById("progress").style.visibility = "hidden";
