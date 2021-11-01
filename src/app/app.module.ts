@@ -68,9 +68,11 @@ import { AppsignonComponent } from './appsignon/appsignon.component';
 import { AppfeatureComponent } from './appfeature/appfeature.component';
 import { AppdetailsComponent } from './appdetails/appdetails.component';
 import { GrouptypeComponent } from './grouptype/grouptype.component';
-import { MfafactorsComponent } from './shared/okta/mfafactors/mfafactors.component';
-import { MfafactortypeComponent } from './shared/okta/mfafactortype/mfafactortype.component';
-import { MfaproviderComponent } from './shared/okta/mfaprovider/mfaprovider.component';
+import { MfafactorsComponent } from 'app/mfafactors/mfafactors.component';
+import { MfafactortypeComponent } from 'app/mfafactortype/mfafactortype.component';
+import { MfaproviderComponent } from 'app/mfaprovider/mfaprovider.component';
+import { HelpmodalComponent } from './helpmodal/helpmodal.component';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -99,6 +101,7 @@ import { MfaproviderComponent } from './shared/okta/mfaprovider/mfaprovider.comp
     MfafactorsComponent,
     MfafactortypeComponent,
     MfaproviderComponent,
+    HelpmodalComponent,
      
     
     
@@ -140,6 +143,7 @@ import { MfaproviderComponent } from './shared/okta/mfaprovider/mfaprovider.comp
     MatSelectModule,
     ChartsModule,
     MatProgressBarModule,
+    MatListModule,
     
   ],
   providers: [

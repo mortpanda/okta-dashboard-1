@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 //import { ConfigModalComponent } from 'app/config-modal/config-modal.component';
 import { CookieService } from 'ngx-cookie-service';
+import { HelpmodalComponent } from 'app/helpmodal/helpmodal.component';
 
 interface Food {
     value: string;
@@ -40,20 +41,20 @@ export class NavbarComponent implements OnInit {
         this.sidebarVisible = false;
     }
 
-    // openConfigModal() {
-    //     const dialogConfig = new MatDialogConfig();
+    HelpModal() {
+        const dialogConfig = new MatDialogConfig();
 
-    //     this.sidebarClose();
+        this.sidebarClose();
 
-    //     // 表示するdialogの設定
-    //     //dialogConfig.disableClose = true;
-    //     dialogConfig.id = "login-component";
-    //     dialogConfig.height = "500px";
-    //     dialogConfig.width = "500px";
+        // 表示するdialogの設定
+        //dialogConfig.disableClose = true;
+        dialogConfig.id = "login-component";
+        dialogConfig.height = "400px";
+        dialogConfig.width = "350px";
 
 
-    //     const modalDialog = this._matdialog.open(ConfigModalComponent, dialogConfig);
-    // }
+        const modalDialog = this._matdialog.open(HelpmodalComponent, dialogConfig);
+    }
 
     ngOnInit() {
         const navbar: HTMLElement = this.element.nativeElement;
