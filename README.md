@@ -20,8 +20,11 @@ Okta org overview dashboard
 * Uses an OpenID Connect access token to retrieve data from the Okta org
 * A service runs on a periodic basis to check the validity of the access token, and if the access token is found to be invalid, the user will be forced to re-authenticate.
 
+## Okta OIDC application configuration 
 
+## Required Scopes and claims
 
+## Rate Limits
 
 ## Development Environment
 ```
