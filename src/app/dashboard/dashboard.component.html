@@ -49,6 +49,22 @@
 
         </div>
     </mat-tab>
+    
+    <mat-tab label="MFA">
+        <div class="fxcontainer" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="5px">
+            <div class="item item3 StatusMFA" id="StatusMFA">
+                <app-mfafactors></app-mfafactors>
+            </div>
+            <div class="item item3 MFAType" id="MFAType">
+                <app-mfafactortype></app-mfafactortype>
+            </div>
+            <div class="item item3 MFAProvider" id="MFAProvider">
+                <app-mfaprovider></app-mfaprovider>
+                
+            </div>
+
+        </div>
+    </mat-tab>
 
     <mat-tab label="Groups Details">
         <div class="fxcontainer" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="5px">
@@ -60,6 +76,9 @@
             About group properties</a> -->
         </div>
     </mat-tab>
+
+
+    
 
     <mat-tab label="App Details">
         <div class="fxcontainer" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="5px">
@@ -73,3 +92,4 @@
         </div>
     </mat-tab>
 </mat-tab-group>
+

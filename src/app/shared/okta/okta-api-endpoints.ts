@@ -27,4 +27,7 @@ export class OktaApiEndpoints {
    //Apps
    strAllApps = '/api/v1/apps';
 
+   // Factors
+   strMFAMethods = "/api/v1/org/factors";
+
 }

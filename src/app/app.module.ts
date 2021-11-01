@@ -68,6 +68,9 @@ import { AppsignonComponent } from './appsignon/appsignon.component';
 import { AppfeatureComponent } from './appfeature/appfeature.component';
 import { AppdetailsComponent } from './appdetails/appdetails.component';
 import { GrouptypeComponent } from './grouptype/grouptype.component';
+import { MfafactorsComponent } from './shared/okta/mfafactors/mfafactors.component';
+import { MfafactortypeComponent } from './shared/okta/mfafactortype/mfafactortype.component';
+import { MfaproviderComponent } from './shared/okta/mfaprovider/mfaprovider.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +96,9 @@ import { GrouptypeComponent } from './grouptype/grouptype.component';
     AppfeatureComponent,
     AppdetailsComponent,
     GrouptypeComponent,
+    MfafactorsComponent,
+    MfafactortypeComponent,
+    MfaproviderComponent,
      
     
     
