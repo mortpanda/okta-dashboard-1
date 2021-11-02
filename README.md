@@ -24,7 +24,10 @@ Okta org overview dashboard
 
 ## Required Scopes and claims
 In the OIDC application, the below scopes need to be configured in order to download the required data to display on the screen.
-
+- okta.apps.read 
+- okta.factors.read 
+- okta.groups.read 
+- okta.users.read 
 
 ## Rate Limits
 
@@ -86,7 +89,7 @@ typescript                      4.1.6
  strClientID = '{{Client ID}}';
  strIssuer = '{{Issuer URI}}';  /// This must be the Org URL ////
  strPostLogoutURL = '{{Redirect URI}}';
- strScope = ['openid', 'email', 'profile','address'];
+ strScope = ['openid', 'email', 'profile','okta.users.read.self','okta.users.read','okta.groups.read','okta.apps.read','okta.factors.read'];
  strResponseType = ['token','id_token'];
  strResponseMode = 'fragment';
  strPrompt = ['consent','login'];
