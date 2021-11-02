@@ -12,15 +12,12 @@ Okta org overview dashboard
 
 **Please note this is NOT an official Okta tool, and the Okta support team WILL NOT provide support for this.**
 
-
-
 ## What does this tool do?
 
 * This is a simple dashboard the shows the Okta org statistics.
 * Uses an OpenID Connect access token to retrieve data from the Okta org
 * A service runs on a periodic basis to check the validity of the access token, and if the access token is found to be invalid, the user will be forced to re-authenticate.
-
-## Okta OIDC application configuration 
+* Auto logout after the access token expires.  The default is 1 hour.
 
 ## Required Scopes and claims
 In the OIDC application, the below scopes need to be configured in order to download the required data to display on the screen.
@@ -30,32 +27,46 @@ In the OIDC application, the below scopes need to be configured in order to down
 - okta.users.read 
 
 ## Rate Limits
+Rate limits have not been catered for, this means, if your have an org with more than 1200 users, and groups, it is likely that a rate limit warning will be displayed.
+
+## Supported Language
+- Currently in English only.
 
 ## Development Environment
 ```
-Angular CLI: 11.2.14
+     _                      _                 ____ _     ___
+    / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
+   / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
+  / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
+ /_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
+                |___/
+
+
+Angular CLI: 11.0.4
 Node: 14.15.0
 OS: linux x64
 
-Angular: 11.2.14
+Angular: 11.0.4
 ... animations, cli, common, compiler, compiler-cli, core, forms
-... platform-browser, platform-browser-dynamic, router
+... language-service, platform-browser, platform-browser-dynamic
+... router
 Ivy Workspace: Yes
 
 Package                         Version
 ---------------------------------------------------------
-@angular-devkit/architect       0.1102.14
-@angular-devkit/build-angular   0.1102.14
-@angular-devkit/core            11.2.14
-@angular-devkit/schematics      11.2.14
+@angular-devkit/architect       0.1100.4
+@angular-devkit/build-angular   0.1100.4
+@angular-devkit/core            11.0.4
+@angular-devkit/schematics      11.0.4
 @angular/cdk                    11.2.13
-@angular/flex-layout            12.0.0-beta.34
+@angular/flex-layout            12.0.0-beta.35
+@angular/http                   7.2.16
+@angular/localize               11.2.14
 @angular/material               11.2.13
-@schematics/angular             11.2.14
-@schematics/update              0.1102.14
-rxjs                            6.6.7
-typescript                      4.1.6
-
+@schematics/angular             11.0.4
+@schematics/update              0.1100.4
+rxjs                            6.6.3
+typescript                      4.0.3
 ```
 
 ## How to run this tool
