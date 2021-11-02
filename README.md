@@ -1,4 +1,4 @@
-# okta-Dashboard-1
+# okta-dashboard-1
 Okta org overview dashboard
 
 <img src="/Capture.PNG" alt="drawing" width="600"/>
