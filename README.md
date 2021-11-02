@@ -76,14 +76,14 @@ typescript                      4.0.3
 - Install pakackages : `npm install`
 - Run the tool : `ng serve`
 - Open the tool : `http://localhost:4200`
-- The below file holds information on the API enpoints,
-`src/app/shared/okta-config.ts`
 
-- The below file is used to hold the Okta condfigurations for the application.
-`src/app/shared/okta-config.ts`
 
-- The below sample has been included, which you can edit and rename to "okta-config.ts" prior to running your own instance of this application.
-`src/app/shared/sample-okta-config.ts`
+## Configurations
+- Information on the API enpoints - `src/app/shared/okta-config.ts`
+
+- OIDC configuration - `src/app/shared/okta-config.ts`
+
+- Sample configuration file - `src/app/shared/sample-okta-config.ts`
 
 - Inside the files, the below section will need to be updated with your setting.
 
