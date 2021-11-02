@@ -23,6 +23,8 @@ Okta org overview dashboard
 ## Okta OIDC application configuration 
 
 ## Required Scopes and claims
+In the OIDC application, the below scopes need to be configured in order to download the required data to display on the screen.
+
 
 ## Rate Limits
 
@@ -82,7 +84,7 @@ typescript                      4.1.6
  strBaseURI = '{{Base URI}}';  
  strRedirectURL = '{{Redirect URI}}';
  strClientID = '{{Client ID}}';
- strIssuer = '{{Issuer URI}}';
+ strIssuer = '{{Issuer URI}}';  /// This must be the Org URL ////
  strPostLogoutURL = '{{Redirect URI}}';
  strScope = ['openid', 'email', 'profile','address'];
  strResponseType = ['token','id_token'];
@@ -95,7 +97,10 @@ typescript                      4.1.6
  strPortalAddress = '{{Portal address}}';
 
 ```
-
+:::note warn
+WARNING
+Please note, the issuer URL is the org URL and not the authorisation server URL.
+:::
 
 
 
