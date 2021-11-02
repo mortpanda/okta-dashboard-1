@@ -9,7 +9,7 @@ export class OktaApiEndpoints {
 
     // API Endpoints
    //Consumes License
-   strAllUsersFilter = '/api/v1/users';
+   strAllUsersFilter = '/api/v1/users/me';
    strActiveUserFilter = '/api/v1/users?filter=status%20eq%20%22ACTIVE%22';
    strRecoveryUserFilter = '/api/v1/users?filter=status%20eq%20%22RECOVERY%22';
    strPWExpiredFilter = '/api/v1/users?filter=status%20eq%20%22PASSWORD_EXPIRED%22';
