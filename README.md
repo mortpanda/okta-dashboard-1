@@ -97,10 +97,10 @@ typescript                      4.1.6
  strPortalAddress = '{{Portal address}}';
 
 ```
-:::note warn
-WARNING
-Please note, the issuer URL is the org URL and not the authorisation server URL.
-:::
+
+**WARNING
+Please note, the issuer URL is the org URL and not the authorisation server URL.**
+
 
 
 
