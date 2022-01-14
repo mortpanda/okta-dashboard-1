@@ -49,7 +49,7 @@ export class AuthService {
     const OktaClientID = this.OktaConfig.strClientID;
     const OktaBaseURI = this.OktaConfig.strBaseURI;
     const OktaLang = this.OktaConfig.strLang;
-    const OktaRedirect = this.OktaConfig.strEnPortal;
+    const OktaRedirect = this.OktaConfig.strRedirectURL;
     const OktaBrand = this.OktaConfig.strBrand;
     const OktaPostlogoutURI = this.OktaConfig.strPostLogoutURL;
     const OktaIssuer = this.OktaConfig.strIssuer;
