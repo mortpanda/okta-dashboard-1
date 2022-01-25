@@ -26,19 +26,19 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog'; 
-import { MatFormFieldModule } from '@angular/material/form-field'; 
-import {MatIconModule} from '@angular/material/icon';
-import {MatInputModule} from '@angular/material/input';
-import {MatSnackBarModule} from '@angular/material/snack-bar'; 
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router, Routes } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {A11yModule} from '@angular/cdk/a11y';
-import {MatChipsModule} from '@angular/material/chips'; 
-import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { A11yModule } from '@angular/cdk/a11y';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { LoginPageComponent } from './login-page/login-page.component';
@@ -49,7 +49,7 @@ import { SdkLoginComponent } from './sdk-login/sdk-login.component';
 import { EnFooterComponent } from './shared/en-footer/en-footer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatTabsModule } from '@angular/material/tabs';
-import {CookieService} from 'ngx-cookie-service';
+import { CookieService } from 'ngx-cookie-service';
 
 import { DashboardDisplayPageComponent } from './dashboard-display-page/dashboard-display-page.component';
 import { ChartsModule } from 'ng2-charts';
@@ -63,7 +63,7 @@ import { AppstatusComponent } from './appstatus/appstatus.component';
 import { OktaChecktokenService } from 'app/shared/okta/okta-checktoken.service';
 import { TokenexpireComponent } from './tokenexpire/tokenexpire.component';
 import { DataloadComponent } from './dataload/dataload.component';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { AppsignonComponent } from './appsignon/appsignon.component';
 import { AppfeatureComponent } from './appfeature/appfeature.component';
 import { AppdetailsComponent } from './appdetails/appdetails.component';
@@ -72,7 +72,7 @@ import { MfafactorsComponent } from 'app/mfafactors/mfafactors.component';
 import { MfafactortypeComponent } from 'app/mfafactortype/mfafactortype.component';
 import { MfaproviderComponent } from 'app/mfaprovider/mfaprovider.component';
 import { HelpmodalComponent } from './helpmodal/helpmodal.component';
-import {MatListModule} from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -102,9 +102,9 @@ import {MatListModule} from '@angular/material/list';
     MfafactortypeComponent,
     MfaproviderComponent,
     HelpmodalComponent,
-     
-    
-    
+
+
+
   ],
   imports: [
     BrowserModule,
@@ -117,7 +117,7 @@ import {MatListModule} from '@angular/material/list';
     MatTabsModule,
     MatToolbarModule,
     MatCardModule,
-    MatMenuModule, 
+    MatMenuModule,
     MatTableModule,
     MatDividerModule,
     MatSlideToggleModule,
@@ -144,7 +144,7 @@ import {MatListModule} from '@angular/material/list';
     ChartsModule,
     MatProgressBarModule,
     MatListModule,
-    
+
   ],
   providers: [
     OktaSDKAuthService,
@@ -155,7 +155,7 @@ import {MatListModule} from '@angular/material/list';
     AppstatusComponent,
     OktaChecktokenService,
     DataloadComponent,
-    ], 
+  ],
 
 
   bootstrap: [AppComponent]
